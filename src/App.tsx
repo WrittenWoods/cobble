@@ -1,14 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { interpolatedRoll } from './helpers/interpolatedRoll';
+import { parseBracket } from './helpers/parseBracket';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-          <p>{interpolatedRoll("I deal 1d8 slashing damage, 2d6 fire damage")}</p>
+          <p>{parseBracket("I deal 1d8 slashing damage, 2d6 fire damage")}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
