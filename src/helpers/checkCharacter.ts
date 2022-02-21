@@ -2,36 +2,42 @@ import { diceRoller } from "./diceRoller";
 import { evaluate } from "mathjs";
 import { charSheet } from "../charSheet";
 
+// Object type to represent information gathered while iterating through the string argument of parseBracket.ts
+
 export interface Implication {
   possibleDie: boolean,
   containsD: boolean,
   dieString: string,
   possibleMath: boolean,
-  hasOperator: boolean,
   mathString: string,
   possibleSnippet: boolean,
-  snippetString: string,
+  snippetTitle: string,
   result: string
 }
 
+// Parses string to identify, and replace with values corresponding to:
+// -text that matches snippet titles in character sheet
+// -dice rolls
+// -mathematical operations (that may or may not include dice rolls)
+
 export const checkCharacter = function determineImplicationsOfCharacter(char: string, imp: Implication) {
 
-  let newImp = imp;
+  let { possibleDie, containsD, dieString, possibleMath, mathString, possibleSnippet, snippetTitle, result } = imp;
 
   function endOfDieString(char: string, containsD: boolean) {
     return containsD ? /[^\d]/.test(char) : /[^\dd]/.test(char)
   }
 
-  if (/\d/.test(char)) { newImp.possibleDie = true }
-  if (/d/.test(imp.dieString)) { newImp.containsD = true }
-  if (newImp.possibleDie && endOfDieString(char, newImp.containsD)) {
-    newImp.possibleDie = false
-    newImp.containsD ? newImp.result += diceRoller(newImp.dieString) : newImp.result += newImp.dieString
-    newImp.dieString = ''
-    newImp.containsD = false
+  if (/\d/.test(char)) { possibleDie = true }
+  if (/d/.test(imp.dieString)) { containsD = true }
+  if (possibleDie && endOfDieString(char, containsD)) {
+    possibleDie = false
+    containsD ? result += diceRoller(dieString) : result += dieString
+    dieString = ''
+    containsD = false
   }
-  newImp.possibleDie ? newImp.dieString += char : newImp.result += char
+  possibleDie ? dieString += char : result += char
 
-  return newImp
+  return { possibleDie, containsD, dieString, possibleMath, mathString, possibleSnippet, snippetTitle, result }
 
 }

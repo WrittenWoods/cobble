@@ -8,10 +8,9 @@ export const parseBracket = function parseBracketStringAndReturnNewString (str: 
     containsD: false,
     dieString: ``,
     possibleMath: false,
-    hasOperator: false,
     mathString: ``,
     possibleSnippet: false,
-    snippetString: ``,
+    snippetTitle: ``,
     result: ``
   }
 

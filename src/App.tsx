@@ -2,21 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { parseBracket } from './helpers/parseBracket';
+import { charSheet } from "./charSheet";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          <p>{parseBracket("I deal 1d8 slashing damage, 2d6 fire damage")}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{parseBracket("1d8 + dexterity + 2d6 + 2 + 4")}</p>
       </header>
     </div>
   );
