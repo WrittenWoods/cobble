@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { parseBracket } from './helpers/parseBracket';
+import { searchSheet } from "./helpers/searchSheet";
 import { charSheet } from "./charSheet";
 
 function App() {

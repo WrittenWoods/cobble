@@ -1,9 +1,4 @@
-interface Snippet {
-  title: string,
-  content: string | string[] | Snippet | Snippet[]
-}
-
-export const charSheet = [
+export const charSheet: any[] = [
 
   [ // Page 1
     { title: `name`, content: `Valdoria Skypincher` },
