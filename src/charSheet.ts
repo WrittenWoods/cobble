@@ -1,6 +1,6 @@
 export const charSheet: any[] = [
 
-  [ // Page 1
+  {title: 'main page', content: [ // Page 1
     { title: `name`, content: `Valdoria Skypincher` },
     { title: `class levels`, content: [
       { title: `bard`, content: `5` },
@@ -74,9 +74,9 @@ export const charSheet: any[] = [
       `Cutting Words`
     ]},
 
-  ],
+  ]},
 
-  [ // Page 2
+  { title: 'spellbook', content: [ // Page 2
     { title: `spell save DC`, content: `[8 + proficiency bonus + ability modifiers.charisma]` },
     { title: `spell attack bonus`, content: `[ability modifiers.charisma + proficiency bonus]` },
 
@@ -86,6 +86,6 @@ export const charSheet: any[] = [
       { title: `2nd level`, content: [`hold person`, `invisibility`, `blindness/deafness`] },
       { title: `3rd level`, content: [`clairvoyance`] }
     ]},
-  ]
+  ]}
 
 ];

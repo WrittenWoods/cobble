@@ -20,9 +20,11 @@ export interface Implication {
 // -dice rolls
 // -mathematical operations (that may or may not include dice rolls)
 
-export const checkCharacter = function determineImplicationsOfCharacter(char: string, imp: Implication) {
+export const checkCharacter = function determineImplicationsOfCharacter
+                                        (char: string, imp: Implication) {
 
-  let { possibleDie, containsD, dieString, possibleMath, mathString, possibleSnippet, snippetTitle, result } = imp;
+  let { possibleDie, containsD, dieString, possibleMath, mathString,
+    possibleSnippet, snippetTitle, result } = imp;
 
   function endOfDieString(char: string, containsD: boolean) {
     return containsD ? /[^\d]/.test(char) : /[^\dd]/.test(char)
@@ -38,6 +40,7 @@ export const checkCharacter = function determineImplicationsOfCharacter(char: st
   }
   possibleDie ? dieString += char : result += char
 
-  return { possibleDie, containsD, dieString, possibleMath, mathString, possibleSnippet, snippetTitle, result }
+  return { possibleDie, containsD, dieString, possibleMath, mathString,
+    possibleSnippet, snippetTitle, result }
 
 }

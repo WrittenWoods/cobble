@@ -1,7 +1,8 @@
 import { checkCharacter, Implication } from "./checkCharacter";
 import { diceRoller } from "./diceRoller";
 
-export const parseBracket = function parseBracketStringAndReturnNewString (str: string) {
+export const parseBracket = function parseBracketStringAndReturnNewString
+                                                            (str: string) {
 
   let imp: Implication = {
     possibleDie: false,
@@ -19,7 +20,8 @@ export const parseBracket = function parseBracketStringAndReturnNewString (str: 
   }
 
   if (imp.dieString) {
-    imp.dieString.includes("d") ? imp.result += diceRoller(imp.dieString) : imp.result += imp.dieString
+    imp.dieString.includes("d") ?
+      imp.result += diceRoller(imp.dieString) : imp.result += imp.dieString
   }
 
   return imp.result
