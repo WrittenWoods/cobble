@@ -1,4 +1,6 @@
-export const charSheet: any[] = [
+import { Snippet } from "./helpers/interfaces";
+
+export const charSheet: Snippet[] = [
 
   {title: 'main page', content: [ // Page 1
     { title: `name`, content: `Valdoria Skypincher` },
