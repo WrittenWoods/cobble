@@ -1,4 +1,4 @@
-export const diceRoller = function parseDiceRollAndReturnResult(str: string) {
+export const diceRoller = function parseDiceRollAndReturnResult (str: string) {
 
   let arr = str.split('')
   let isDieType = false

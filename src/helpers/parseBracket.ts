@@ -2,7 +2,7 @@ import { checkCharacter, Implication } from "./checkCharacter";
 import { diceRoller } from "./diceRoller";
 
 export const parseBracket = function parseBracketStringAndReturnNewString
-                                                            (str: string) {
+  (str: string) {
 
   let imp: Implication = {
     possibleDie: false,

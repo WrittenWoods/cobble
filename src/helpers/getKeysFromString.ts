@@ -1,8 +1,8 @@
 export const getKeysFromString = function createArrayOfKeysFromString
-(str: string): string[] {
+  (str: string): string[] {
 
-let strArr = str.split(".")
+  let strArr = str.split(".")
 
-return strArr
+  return strArr
 
 }

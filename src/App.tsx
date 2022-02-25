@@ -1,19 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { parseBracket } from './helpers/parseBracket';
-import { getContent } from "./helpers/getContent";
-import { getKeysFromString } from "./helpers/getKeysFromString";
+import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { charSheet } from "./charSheet";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>{JSON.stringify(getContent(getKeysFromString("spellbook.spells.cantrips"), charSheet))}</p>
+        <p>Hewwo</p>
       </header>
     </div>
   );
 }
 
 export default App;
+console.log(oneDimensionalSheet(charSheet))
