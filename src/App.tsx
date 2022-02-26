@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
-import { nestSnippet } from "./helpers/nestSnippet";
+import { toNestedSheet } from "./helpers/toNestedSheet";
 import { charSheet } from "./charSheet";
 
 function App() {
@@ -16,4 +16,4 @@ function App() {
 }
 
 export default App;
-// console.log(nestSnippet({ titlePath: ['spellbook', 'spells', '3rd level'], content: ['greater invisibility'] }, charSheet))
+console.log(toNestedSheet(oneDimensionalSheet(charSheet)))
