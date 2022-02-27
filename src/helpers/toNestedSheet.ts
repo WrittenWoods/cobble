@@ -1,5 +1,7 @@
 import { nestSnippet } from "./nestSnippet";
 
+// Helper method for converting a one-dimensional object array sheet into a nested object sheet.
+
 export const toNestedSheet = function convertOneDimensionalSheetIntoNestedSheet
   (arr: SearchSnippet[]) {
 

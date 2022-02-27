@@ -1,5 +1,7 @@
 import { Snippet } from "./helpers/interfaces";
 
+// Character sheet in the form of an array of nested Snippets.
+
 export const charSheet: Snippet[] = [
 
   {title: 'main page', content: [ // Page 1

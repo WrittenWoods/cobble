@@ -1,5 +1,8 @@
 import { Snippet, SearchSnippet } from "./interfaces";
 
+// Function that determines if a snippet is the deepest nested object in a sheet.
+// Should return true for strings and string arrays, false for an array with a snippet in it.
+
 export const endOfTitlePath = function checkContentForStringOrStringsArray
   (snippet: Snippet | SearchSnippet): boolean {
 
