@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
-import { toNestedSheet } from "./helpers/toNestedSheet";
+import { searchSheet } from "./helpers/searchSheet";
 import { charSheet } from "./charSheet";
+import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 
 function App() {
   return (
@@ -16,4 +16,4 @@ function App() {
 }
 
 export default App;
-console.log(toNestedSheet(oneDimensionalSheet(charSheet)))
+console.log(searchSheet("scores", oneDimensionalSheet(charSheet)))
