@@ -1,12 +1,12 @@
 import { endOfTitlePath } from "./endOfTitlePath";
-import { Snippet, SearchSnippet } from "./interfaces";
+import { SearchSnippet } from "./interfaces";
 
 // Method for converting a nested object sheet into a more searchable one-dimensional sheet.
 
 export const oneDimensionalSheet = function convertNestedSheetToOneDimensionalSheet
-  (arr: Snippet[], titlePath: string[] = []): SearchSnippet[] {
+  (arr: any[], titlePath: string[] = []): SearchSnippet[] {
 
-  let newArr = []
+  let newArr: SearchSnippet[] = []
   let titleArray = titlePath
 
   for (let i = 0; i < arr.length; i++) {

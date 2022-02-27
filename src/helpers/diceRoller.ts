@@ -1,7 +1,7 @@
 
 // Function that accepts a string of the form "1d6", "32d12" etc. and returns a dice roll result.
 
-export const diceRoller = function parseDiceRollAndReturnResult (str: string) {
+export const diceRoller = function parseDiceRollAndReturnResult (str: string): number {
 
   let arr = str.split('')
   let isDieType = false

@@ -4,7 +4,7 @@ import { endOfTitlePath } from "./endOfTitlePath";
 // Method for adding a SearchSnippet to a nested sheet, or changing its value if it's already there.
 
 export const nestSnippet = function addSearchSnippetToNestedSheetArray
-  (snippet: SearchSnippet, arr: Snippet[]) {
+  (snippet: SearchSnippet, arr: any[]) {
 
   // By default, identifies the snippet argument as a new snippet
   // Changes to false if a snippet with a matching title is found in the array argument.
