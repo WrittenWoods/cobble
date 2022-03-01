@@ -2,10 +2,10 @@ import { Snippet } from "./helpers/interfaces";
 
 // Character sheet in the form of an array of nested Snippets.
 
-export const charSheet: Snippet[] = [
+export const starterSheet: Snippet[] = [
 
   {title: 'main page', content: [ // Page 1
-    { title: `name`, content: `Valdoria Skypincher` },
+    { title: `name`, content: `Bardly Bardson` },
     { title: `class levels`, content: [
       { title: `bard`, content: `5` },
     ]},
