@@ -4,8 +4,9 @@ import './App.css';
 import { starterSheet } from "./starterSheet";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { getOneDContent } from "./helpers/getOneDContent";
-import { interpretStringInput } from "./helpers/interpretStringInput";
+import { parseContent } from "./helpers/parseContent";
 import { Snippet, SearchSnippet } from "./helpers/interfaces";
+import { evaluate } from "mathjs";
 
 const displaySheet = function returnListOfSnippets (sheet: Snippet[]) {
   return oneDimensionalSheet(sheet).map(
@@ -26,5 +27,3 @@ function App() {
 }
 
 export default App;
-
-console.log(interpretStringInput("I deal [1d10 + mainpage.abilityScores.dexterity + mainPage.proficiencyBonus] slashing damage and [1d8 + mainpage.proficiencyBonus] fire damage", oneDimensionalSheet(starterSheet)))

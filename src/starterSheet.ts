@@ -19,44 +19,44 @@ export const starterSheet: Snippet[] = [
       { title: `dexterity`, content: `14` },
       { title: `constitution`, content: `12` },
       { title: `intelligence`, content: `13` },
-      { title: `wisdom`, content: `10` },
+      { title: `wisdom`, content: `8` },
       { title: `charisma`, content: `15` }
     ]},
 
     { title: `ability modifiers`, content: [
-      { title: `strength`, content: `[(abilityScores.strength - 10) / 2]` },
-      { title: `dexterity`, content: `[(abilityScores.dexterity - 10) / 2]` },
-      { title: `constitution`, content: `[(abilityScores.constitution - 10) / 2]` },
-      { title: `intelligence`, content: `[(abilityScores.intelligence - 10) / 2]` },
-      { title: `wisdom`, content: `[(abilityScores.wisdom - 10) / 2]` },
-      { title: `charisma`, content: `[(abilityScores.charisma - 10) / 2]` },
+      { title: `strength`, content: `[(mainPage.abilityScores.strength - 10) / 2]` },
+      { title: `dexterity`, content: `[(mainPage.abilityScores.dexterity - 10) / 2]` },
+      { title: `constitution`, content: `[(mainPage.abilityScores.constitution - 10) / 2]` },
+      { title: `intelligence`, content: `[(mainPage.abilityScores.intelligence - 10) / 2]` },
+      { title: `wisdom`, content: `[(mainPage.abilityScores.wisdom - 10) / 2]` },
+      { title: `charisma`, content: `[(mainPage.abilityScores.charisma - 10) / 2]` },
     ]},
 
     { title: `saving throws`, content: [
-      { title: `strength`, content: `[abilityModifiers.strength]` },
-      { title: `dexterity`, content: `[abilityModifiers.dexterity + proficiencyBonus]` },
-      { title: `constitution`, content: `[abilityModifiers.constitution]` },
-      { title: `intelligence`, content: `[abilityModifiers.intelligence]` },
-      { title: `wisdom`, content: `[abilityModifiers.wisdom]` },
-      { title: `charisma`, content: `[abilityModifiers.charisma + proficiencyBonus]` },
+      { title: `strength`, content: `[mainPage.abilityModifiers.strength]` },
+      { title: `dexterity`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` },
+      { title: `constitution`, content: `[mainPage.abilityModifiers.constitution]` },
+      { title: `intelligence`, content: `[mainPage.abilityModifiers.intelligence]` },
+      { title: `wisdom`, content: `[mainPage.abilityModifiers.wisdom]` },
+      { title: `charisma`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
     ]},
 
     { title: `skills`, content: [
-      { title: `persuasion`, content: `[abilityModifiers.charisma + proficiencyBonus * 2]` },
-      { title: `deception`, content: `[abilityModifiers.charisma + proficiencyBonus]` },
-      { title: `perception`, content: `[abilityModifiers.wisdom + proficiencyBonus]` },
-      { title: `arcana`, content: `[abilityModifiers.intelligence + proficiencyBonus]` },
-      { title: `history`, content: `[abilityModifiers.intelligence + proficiencyBonus * 2]`},
-      { title: `acrobatics`, content: `[abilityModifiers.dexterity + proficiencyBonus]` },
-      { title: `sleight of hand`, content: `[abilityModifiers.dexterity + proficiencyBonus]` },
-      { title: `stealth`, content: `[abilityModifiers.dexterity + proficiencyBonus]` }
+      { title: `persuasion`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus * 2]` },
+      { title: `deception`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
+      { title: `perception`, content: `[mainPage.abilityModifiers.wisdom + mainPage.proficiencyBonus]` },
+      { title: `arcana`, content: `[mainPage.abilityModifiers.intelligence + mainPage.proficiencyBonus]` },
+      { title: `history`, content: `[mainPage.abilityModifiers.intelligence + mainPage.proficiencyBonus * 2]`},
+      { title: `acrobatics`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` },
+      { title: `sleight of hand`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` },
+      { title: `stealth`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` }
     ]},
 
     { title: `proficiency bonus`, content: `3` },
     { title: `inspiration`, content: `[x]` },
     { title: `speed`, content: `30` },
 
-    { title: `maximum hit points`, content: `[8 + 4d8.roll + 5 * abilityModifiers.constitution]` },
+    { title: `maximum hit points`, content: `[8 + 4d8.roll + 5 * mainPage.abilityModifiers.constitution]` },
     { title: `current hit points`, content: `[maximumHitPoints]` },
 
     { title: `attacks`, content: [
@@ -81,8 +81,8 @@ export const starterSheet: Snippet[] = [
   ]},
 
   { title: 'spellbook', content: [ // Page 2
-    { title: `spell save DC`, content: `[8 + proficiencyBonus + abilityModifiers.charisma]` },
-    { title: `spell attack bonus`, content: `[abilityModifiers.charisma + proficiencyBonus]` },
+    { title: `spell save DC`, content: `[8 + mainPage.proficiencyBonus + mainPage.abilityModifiers.charisma]` },
+    { title: `spell attack bonus`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
 
     { title: `spells`, content: [
       { title: `cantrips`, content: [`true strike`, `dancing lights`, `mending`]},
