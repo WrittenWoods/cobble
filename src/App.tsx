@@ -4,7 +4,7 @@ import './App.css';
 import { starterSheet } from "./starterSheet";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { getOneDContent } from "./helpers/getOneDContent";
-import { interpretBracket } from "./helpers/interpretBracket";
+import { interpretStringInput } from "./helpers/interpretStringInput";
 import { Snippet, SearchSnippet } from "./helpers/interfaces";
 
 const displaySheet = function returnListOfSnippets (sheet: Snippet[]) {
@@ -27,4 +27,4 @@ function App() {
 
 export default App;
 
-console.log(interpretBracket("I deal mainpage.abilityScores.dexterity + mainPage.proficiencyBonus slashing damage and 1d8 + mainpage.proficiencyBonus fire damage", oneDimensionalSheet(starterSheet)))
+console.log(interpretStringInput("I deal [1d10 + mainpage.abilityScores.dexterity + mainPage.proficiencyBonus] slashing damage and [1d8 + mainpage.proficiencyBonus] fire damage", oneDimensionalSheet(starterSheet)))

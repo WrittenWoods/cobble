@@ -22,16 +22,17 @@ export const interpretBracket = function returnBracketedStringWithNewInterpolate
   let rollArray = [...result.matchAll(/([\d]+d[\d]+)/g)].map(a => a[0])
   let rolledArray = rollArray.map(x => diceRoller(x))
   for (let i = 0; i < rollArray.length; i++) {
-    result = result.replace(rollArray, rolledArray)
+    result = result.replace(rollArray[i], rolledArray[i])
   }
 
   // Find and replace mathematical operations with calculated results
 
-  let mathArray = [...result.matchAll(/ (\d|\+|\-|\*|\/|\(|\)| )+ /g)]
+  let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)| )+/g)]
                   .map(a => a[0])
   let calculatedArray = mathArray.map(x => /[\S]+/.test(x) ? evaluate(x) : x)
+  console.log(calculatedArray)
   for (let i = 0; i < mathArray.length; i++) {
-    result = result.replace(mathArray[i], " " + calculatedArray[i].toString() + " ")
+    result = result.replace(mathArray[i], calculatedArray[i].toString())
   }
 
   return result
