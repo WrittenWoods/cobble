@@ -1,21 +1,21 @@
 import Fuse from 'fuse.js';
-import { SearchSnippet } from "./interfaces";
+import { SearchBlock } from "./interfaces";
 
 export const searchSheet = function useTitlePathToSearchOneDSheet
-(searchQuery: string, sheet: SearchSnippet[]): string[] {
+(searchQuery: string, sheet: SearchBlock[]): string[] {
 
   const options = {
     keys: ['titlePath']
   }
 
   const fuse = new Fuse(sheet, options)
-  const foundSnippets = fuse.search(searchQuery)
+  const foundNestedBlocks = fuse.search(searchQuery)
 
   const result: string[] = []
-  const resultsCount = foundSnippets.length > 5 ? 5 : foundSnippets.length
+  const resultsCount = foundNestedBlocks.length > 5 ? 5 : foundNestedBlocks.length
 
   for (let i = 0; i < resultsCount; i++) {
-    result.push(foundSnippets[i].item.titlePath.join("."))
+    result.push(foundNestedBlocks[i].item.titlePath.join("."))
   }
 
   return result

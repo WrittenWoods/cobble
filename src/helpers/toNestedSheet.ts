@@ -1,15 +1,15 @@
-import { nestSnippet } from "./nestSnippet";
-import { Snippet, SearchSnippet } from "./interfaces";
+import { nestBlock } from "./nestBlock";
+import { NestedBlock, SearchBlock } from "./interfaces";
 
 // Helper method for converting a one-dimensional object array sheet into a nested object sheet.
 
 export const toNestedSheet = function convertOneDimensionalSheetIntoNestedSheet
-  (arr: SearchSnippet[]) {
+  (arr: SearchBlock[]) {
 
-  let nestedSheet: Snippet[] = []
+  let nestedSheet: NestedBlock[] = []
 
   for (let i = 0; i < arr.length; i++) {
-    nestSnippet(arr[i], nestedSheet)
+    nestBlock(arr[i], nestedSheet)
   }
 
   return nestedSheet

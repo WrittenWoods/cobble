@@ -2,20 +2,20 @@
 
 -A "snippet" in the context of this project is a single discrete named field in a character sheet.
 -"Class", "ability scores" etc.
--Snippets can be nested: "Strength" can be a snippet in "ability scores" etc.
+-NestedBlocks can be nested: "Strength" can be a snippet in "ability scores" etc.
 
 */
 
-// Snippets as they exist in the nested object form of a character sheet
+// NestedBlocks as they exist in the nested object form of a character sheet
 
-export interface Snippet {
+export interface NestedBlock {
   title: string,
-  content: string | string[] | Snippet[]
+  content: string | string[] | NestedBlock[]
 }
 
-// Snippets as they exist in the one-dimensional object array form of a character sheet
+// NestedBlocks as they exist in the one-dimensional object array form of a character sheet
 
-export interface SearchSnippet {
+export interface SearchBlock {
   titlePath: string[],
   content: string | string[]
 }

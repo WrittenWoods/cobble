@@ -1,12 +1,12 @@
 import { parseBracket } from "./parseBracket";
-import { SearchSnippet } from "./interfaces";
+import { SearchBlock } from "./interfaces";
 
 export const parseContent = function findAndparseBracketsInString
-(content: string | string[], sheet: SearchSnippet[]) {
+(content: string | string[], sheet: SearchBlock[]) {
 
   let result: string | string[];
 
-  function parseBracketsInString (str: string, sheet: SearchSnippet[]) {
+  function parseBracketsInString (str: string, sheet: SearchBlock[]) {
     let newStr = str
     let bracketsArray = [...str.matchAll(/\[(.)*?\]/g)].map(a => a[0])
     let interpretedArray = bracketsArray.map(x => parseBracket(x, sheet))

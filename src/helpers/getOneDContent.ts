@@ -1,4 +1,4 @@
-import { SearchSnippet } from "./interfaces";
+import { SearchBlock } from "./interfaces";
 import { matchTitlePath } from "./matchTitlePath";
 
 // Function that accepts snippet titles as an array of strings
@@ -6,7 +6,7 @@ import { matchTitlePath } from "./matchTitlePath";
 // and returns the corresponding content as a result if present.
 
 export const getOneDContent = function returnContentFromOneDimensionalArray
-(sheet: SearchSnippet[], titlePath: string): string | string[] {
+(sheet: SearchBlock[], titlePath: string): string | string[] {
 
   let content: string | string[] = []
   let match = false

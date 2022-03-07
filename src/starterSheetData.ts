@@ -1,8 +1,8 @@
-import { Snippet } from "./helpers/interfaces";
+import { NestedBlock } from "./helpers/interfaces";
 
-// Character sheet in the form of an array of nested Snippets.
+// Character sheet in the form of an array of nested NestedBlocks.
 
-export const starterSheet: Snippet[] = [
+export const starterSheetData: NestedBlock[] = [
 
   {title: 'main page', content: [ // Page 1
     { title: `name`, content: `Bardly Bardson` },
@@ -70,8 +70,8 @@ export const starterSheet: Snippet[] = [
     { title: `equipment`, content: [`backpack`, `bedroll`, `rope`] },
 
     { title: `features & traits`, content: [
-      `Bardic Inspiration [d8]`,
-      `Jack of All Trades (+[classLevels.bard / 2.floor] bonus)`,
+      `Bardic Inspiration [1d8]`,
+      `Jack of All Trades (+[mainpage.classLevels.bard / 2] bonus)`,
       `Song of Rest [d6]`,
       `Expertise (persuasion, history)`,
       `Font of Inspiration`,

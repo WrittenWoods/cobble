@@ -1,11 +1,11 @@
 import { diceRoller } from "./diceRoller";
 import { evaluate } from 'mathjs';
 import { getOneDContent } from "./getOneDContent";
-import { SearchSnippet } from "./interfaces";
+import { SearchBlock } from "./interfaces";
 import { parseContent } from "./parseContent";
 
 export const parseBracket = function returnBracketedStringWithNewInterpolatedValues
-(str: string, sheet: SearchSnippet[]): string {
+(str: string, sheet: SearchBlock[]): string {
 
   let result = str.replaceAll(/\[|\]/g, "")
 
