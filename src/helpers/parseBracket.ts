@@ -36,7 +36,6 @@ export const parseBracket = function returnBracketedStringWithNewInterpolatedVal
 
   let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)| )+/g)]
                   .map(a => a[0])
-                  console.log(mathArray)
   let calculatedArray = mathArray.map(x => /[\S]+/.test(x) ? evaluate(x) : x)
   for (let i = 0; i < mathArray.length; i++) {
     result = result.replace(mathArray[i], calculatedArray[i].toString())

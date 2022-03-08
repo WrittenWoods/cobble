@@ -1,6 +1,16 @@
 import React from 'react';
-import Page from "./Page";
+import Block from "./Block";
 
 export default function Page(props) {
-  return <li>{props.pageNumber.title}</li>
+  return (
+    <ul>
+      {props.sheetData.map(x =>
+        <Block
+          sheetData={props.sheetData}
+          content={x.content}
+          titlePath={x.titlePath}
+        />
+      )}
+    </ul>
+  )
 }
