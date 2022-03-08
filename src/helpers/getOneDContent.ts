@@ -1,8 +1,8 @@
 import { SearchBlock } from "./interfaces";
 import { matchTitlePath } from "./matchTitlePath";
 
-// Function that accepts snippet titles as an array of strings
-// as well as a one-dimensional array of snippets to search
+// Function that accepts block titles as an array of strings
+// as well as a one-dimensional array of blocks to search
 // and returns the corresponding content as a result if present.
 
 export const getOneDContent = function returnContentFromOneDimensionalArray

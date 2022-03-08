@@ -1,6 +1,6 @@
 
-// Function that accepts snippet titles as an array of strings
-// as well as an array of potentially nested snippets to search
+// Function that accepts block titles as an array of strings
+// as well as an array of potentially nested blocks to search
 // and returns the corresponding content as a result if present.
 
 export const getNestedContent = function returnContentFromNestedArray

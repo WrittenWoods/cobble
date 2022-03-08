@@ -1,14 +1,14 @@
 import { NestedBlock, SearchBlock } from "./interfaces";
 
-// Function that determines if a snippet is the deepest nested object in a sheet.
-// Should return true for strings and string arrays, false for an array with a snippet in it.
+// Function that determines if a block is the deepest nested object in a sheet.
+// Should return true for strings and string arrays, false for an array with a block in it.
 
 export const endOfTitlePath = function checkContentForStringOrStringsArray
-  (snippet: NestedBlock | SearchBlock): boolean {
+  (block: NestedBlock | SearchBlock): boolean {
 
-  if (Array.isArray(snippet.content)) {
-    for (let i = 0; i < snippet.content.length; i++) {
-      if (typeof snippet.content[i] !== 'string') { return false }
+  if (Array.isArray(block.content)) {
+    for (let i = 0; i < block.content.length; i++) {
+      if (typeof block.content[i] !== 'string') { return false }
     }
   }
 

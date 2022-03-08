@@ -1,5 +1,5 @@
 // Identifies a match between a user input title path like "mainpage.abilityScores.dexterity"
-// and a title path in a snippet like ["main-page", "Ability Scores", "DEXTERITY"]
+// and a title path in a block like ["main-page", "Ability Scores", "DEXTERITY"]
 // Ignores whitespace and hyphens in titles
 
 export const matchTitlePath = function matchStringInputWithCorrespondingTitlePath

@@ -1,8 +1,8 @@
 /*
 
--A "snippet" in the context of this project is a single discrete named field in a character sheet.
+-A "block" in the context of this project is a single discrete named field in a character sheet.
 -"Class", "ability scores" etc.
--NestedBlocks can be nested: "Strength" can be a snippet in "ability scores" etc.
+-NestedBlocks can be nested: "Strength" can be a block in "ability scores" etc.
 
 */
 
