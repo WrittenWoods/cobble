@@ -8,11 +8,13 @@ import Sheet from "./Sheet";
 
 function App() {
 
+  const [loadedSheet, setLoadedSheet] = useState(oneDimensionalSheet(starterSheetData))
+
   return (
     <div className="App">
       <header className="App-header">
         <Sheet
-          sheetData={oneDimensionalSheet(starterSheetData)}
+          sheetData={loadedSheet}
         />
       </header>
     </div>

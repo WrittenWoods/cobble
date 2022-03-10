@@ -7,8 +7,8 @@ export default function Page(props) {
       {props.sheetData.map(x =>
         <Block
           sheetData={props.sheetData}
-          content={x.content}
           titlePath={x.titlePath}
+          content={x.content}
         />
       )}
     </ul>
