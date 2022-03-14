@@ -5,7 +5,7 @@ import { NestedBlock } from "./helpers/interfaces";
 export const starterSheetData: NestedBlock[] = [
 
   {title: 'main page', content: [ // Page 1
-    { title: `name`, content: `Bardly Bardson` },
+    { title: `name`, content: `Kvothe` },
     { title: `class levels`, content: [
       { title: `bard`, content: `5` },
     ]},

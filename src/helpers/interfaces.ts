@@ -6,14 +6,14 @@
 
 */
 
-// NestedBlocks as they exist in the nested object form of a character sheet
+// Blocks as they exist in the nested object form of a character sheet
 
 export interface NestedBlock {
   title: string,
   content: string | string[] | NestedBlock[]
 }
 
-// NestedBlocks as they exist in the one-dimensional object array form of a character sheet
+// Blocks as they exist in the one-dimensional object array form of a character sheet
 
 export interface SearchBlock {
   titlePath: string[],

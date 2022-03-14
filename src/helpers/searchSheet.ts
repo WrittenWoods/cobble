@@ -1,6 +1,8 @@
 import Fuse from 'fuse.js';
 import { SearchBlock } from "./interfaces";
 
+// Uses Fuse module to search one-dimensional sheet array
+
 export const searchSheet = function useTitlePathToSearchOneDSheet
 (searchQuery: string, sheet: SearchBlock[]): string[] {
 

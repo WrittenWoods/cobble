@@ -64,6 +64,8 @@ export const parseContent = (content: string | string[], sheet: SearchBlock[]) =
     return newStr
   }
 
+  // Returns result depending on whether content is single string or array of strings
+
   result = Array.isArray(content) ?
     content.map(x => parseBracketsInString(x))
     : parseBracketsInString(content)

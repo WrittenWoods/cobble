@@ -17,5 +17,5 @@ export const getNestedContent = function returnContentFromNestedArray
       }
     }
   }
-  
+
 }
