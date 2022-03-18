@@ -6,19 +6,20 @@ import { arrayEquals } from "./helpers/arrayEquals"
 // Component that represents individual blocks in a character sheet
 // including blocks that may contain other blocks
 
-export default function Block (props) {
+export default function Block (props: object) {
   const [editMode, toggleEditMode] = useState(false)
-  const [content, setContent] = useState(props.content)
+  const [blockValue, setBlockValue] = useState({ titlePath: props.titlePath, content: props.content })
   const [text, setText] = useState(props.content)
+  const [title, setTitle] = useState(props.titlePath[props.titlePath.length - 1])
 
-  function updateSheet(block) {
+  function updateSheet() {
     let arr = [...props.loadedSheet]
     let newBlock = true
 
     for (let i = 0; i < arr.length; i++) {
-      if (arrayEquals(arr[i].titlePath, block.titlePath)) {
+      if (arrayEquals(arr[i].titlePath, props.titlePath)) {
         newBlock = false
-        arr[i] = block
+        arr[i] = blockValue
       }
     }
 
@@ -28,22 +29,28 @@ export default function Block (props) {
   }
 
   useEffect(() => {
-    updateSheet({ titlePath: props.titlePath, content: content })
-  }, [content])
+    updateSheet()
+  }, [blockValue])
 
   // TSX return for the component
 
   return (
     <div>
-      <button onClick={() => { setContent(text); toggleEditMode(!editMode) }}>
+      <button onClick={() => {
+         setBlockValue({
+           titlePath: [...props.titlePath.slice(0, props.titlePath.length - 1), title], content: text
+         });
+         toggleEditMode(!editMode) 
+       }}>
         {editMode ? "save" : "edit"}
       </button>
-      <span>
         {editMode ?
-          <textarea value={text} onChange={(e) => setText(e.target.value)} />
-          : props.titlePath.join(".") + " : " + parseContent(content, props.loadedSheet)
+          <span>
+            <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
+            <textarea value={text} onChange={(e) => setText(e.target.value)} />
+          </span>
+          : <span>{props.titlePath.join(".") + " : " + parseContent(text, props.loadedSheet)}</span>
         }
-      </span>
     </div>
   )
 }
