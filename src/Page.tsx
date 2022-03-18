@@ -3,7 +3,7 @@ import Block from "./Block";
 
 export default function Page(props) {
   return (
-    <ul>
+    <div>
       {props.loadedSheet.map(x =>
         <Block
           key={x.titlePath.join('.')}
@@ -13,6 +13,6 @@ export default function Page(props) {
           content={x.content}
         />
       )}
-    </ul>
+    </div>
   )
 }

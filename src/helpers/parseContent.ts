@@ -41,7 +41,7 @@ export const parseContent = (content: string | string[], sheet: SearchBlock[]) =
 
     // Find and replace mathematical operations with calculated results
 
-    let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)| )+/g)]
+    let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)|\.| )+/g)]
                     .map(a => a[0])
     let calculatedArray = mathArray.map(x => /[\S]+/.test(x) ? evaluate(x) : x)
     for (let i = 0; i < mathArray.length; i++) {

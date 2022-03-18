@@ -23,7 +23,7 @@ export default function Block (props) {
     }
 
     if (newBlock) { arr.push(block) }
-    
+
     props.setLoadedSheet(arr)
   }
 
@@ -34,16 +34,16 @@ export default function Block (props) {
   // TSX return for the component
 
   return (
-    <li>
+    <div>
+      <button onClick={() => { setContent(text); toggleEditMode(!editMode) }}>
+        {editMode ? "save" : "edit"}
+      </button>
       <span>
         {editMode ?
           <textarea value={text} onChange={(e) => setText(e.target.value)} />
           : props.titlePath.join(".") + " : " + parseContent(content, props.loadedSheet)
         }
       </span>
-      <button onClick={() => { setContent(text); toggleEditMode(!editMode) }}>
-        {editMode ? "save" : "edit"}
-      </button>
-    </li>
+    </div>
   )
 }
