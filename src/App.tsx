@@ -9,12 +9,14 @@ import Sheet from "./Sheet";
 function App() {
 
   const [loadedSheet, setLoadedSheet] = useState(oneDimensionalSheet(starterSheetData))
+  const [text, setText] = useState("hewwo")
 
   return (
     <div className="App">
       <header className="App-header">
         <Sheet
-          sheetData={loadedSheet}
+          loadedSheet={loadedSheet}
+          setLoadedSheet={setLoadedSheet}
         />
       </header>
     </div>

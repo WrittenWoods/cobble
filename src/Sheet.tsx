@@ -3,8 +3,11 @@ import Page from "./Page";
 
 export default function Sheet(props) {
   return (
-    <Page
-      sheetData={props.sheetData}
-    />
+    <div>
+      <Page
+        loadedSheet={props.loadedSheet}
+        setLoadedSheet={props.setLoadedSheet}
+      />
+    </div>
   );
 }

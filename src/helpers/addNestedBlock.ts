@@ -3,7 +3,7 @@ import { endOfTitlePath } from "./endOfTitlePath";
 
 // Method for adding a SearchBlock to a nested sheet, or changing its value if it's already there.
 
-export const nestBlock = function addSearchBlockToNestedSheetArray
+export const addNestedBlock = function addSearchBlockToNestedSheetArray
   (block: SearchBlock, arr: any[]) {
 
   // By default, identifies the NestedBlock argument as a new NestedBlock
@@ -19,7 +19,7 @@ export const nestBlock = function addSearchBlockToNestedSheetArray
       if (block.titlePath.length === 1) {
         arr[i].content = block.content
       } else {
-        arr[i].content = nestBlock(
+        arr[i].content = addNestedBlock(
           { titlePath: block.titlePath.slice(1), content: block.content }, arr[i].content
         )
       }
@@ -32,7 +32,7 @@ export const nestBlock = function addSearchBlockToNestedSheetArray
     if (block.titlePath.length === 1) {
       arr.push({ title: block.titlePath[0], content: block.content })
     } else {
-      arr.push( { title: block.titlePath[0], content: nestBlock(
+      arr.push( { title: block.titlePath[0], content: addNestedBlock(
         { titlePath: block.titlePath.slice(1), content: block.content }, []
       ) })
     }

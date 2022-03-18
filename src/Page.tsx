@@ -4,9 +4,11 @@ import Block from "./Block";
 export default function Page(props) {
   return (
     <ul>
-      {props.sheetData.map(x =>
+      {props.loadedSheet.map(x =>
         <Block
-          sheetData={props.sheetData}
+          key={x.titlePath.join('.')}
+          loadedSheet={props.loadedSheet}
+          setLoadedSheet={props.setLoadedSheet}
           titlePath={x.titlePath}
           content={x.content}
         />
