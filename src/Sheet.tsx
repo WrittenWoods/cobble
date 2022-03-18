@@ -1,10 +1,10 @@
 import React from 'react';
-import Page from "./Page";
+import Menu from "./Menu";
 
 export default function Sheet(props) {
   return (
     <div>
-      <Page
+      <Menu
         loadedSheet={props.loadedSheet}
         setLoadedSheet={props.setLoadedSheet}
       />

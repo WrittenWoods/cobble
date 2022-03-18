@@ -1,7 +1,7 @@
 import React from 'react';
 import Block from "./Block";
 
-export default function Page(props) {
+export default function Menu(props) {
   return (
     <div>
       {props.loadedSheet.map(x =>
