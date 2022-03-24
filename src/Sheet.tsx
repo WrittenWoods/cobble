@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from "./Menu";
 
-export default function Sheet(props) {
+function Sheet ({ sheet, setSheet }) {
+
+  const [displayedPanels, setDisplayedPanels] = useState([[]])
+
   return (
     <div>
-      <Menu
-        loadedSheet={props.loadedSheet}
-        setLoadedSheet={props.setLoadedSheet}
-      />
+      {displayedPanels.map( titlePath =>
+        <Menu
+          sheet={sheet}
+          setSheet={setSheet}
+          displayedPanels={displayedPanels}
+          setDisplayedPanels={setDisplayedPanels}
+          titlePath={titlePath}
+          key={titlePath.join('.') + 'panel'}
+        />
+      )}
     </div>
-  );
+  )
+
 }
+
+export default Sheet;

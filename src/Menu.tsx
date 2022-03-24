@@ -1,18 +1,40 @@
-import React from 'react';
-import Block from "./Block";
+import React, { useState } from 'react';
+import MenuItem from './MenuItem'
 
-export default function Menu(props) {
+function Menu ({ sheet, setSheet, titlePath, setDisplayedPanels, displayedPanels }) {
+
+  function titlePathMatch(sheetPath, inputPath) {
+    let match = true
+    for (let i = 0; i < inputPath.length; i++) {
+      match = sheetPath.includes(inputPath[i])
+    }
+    return match
+  }
+
+  function menuItemList() {
+    let result = []
+    let filtered = sheet.filter( x => titlePathMatch(x.titlePath, titlePath) )
+    filtered.forEach(x =>
+      !result.includes(x.titlePath[titlePath.length]) && result.push(x.titlePath[titlePath.length])
+    )
+    return result
+  }
+
   return (
-    <div>
-      {props.loadedSheet.map(x =>
-        <Block
-          key={x.titlePath.join('.')}
-          loadedSheet={props.loadedSheet}
-          setLoadedSheet={props.setLoadedSheet}
-          titlePath={x.titlePath}
-          content={x.content}
+    <ul>
+      {menuItemList().map( x =>
+        <MenuItem
+          sheet={sheet}
+          setSheet={setSheet}
+          displayedPanels={displayedPanels}
+          setDisplayedPanels={setDisplayedPanels}
+          titlePath={[...titlePath, x]}
+          key={[...titlePath, x].join('.') + 'menu item'}
         />
       )}
-    </div>
+    </ul>
   )
+
 }
+
+export default Menu;
