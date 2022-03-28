@@ -14,7 +14,6 @@ function Sheet ({ sheet, setSheet }) {
           displayedPanels={displayedPanels}
           setDisplayedPanels={setDisplayedPanels}
           titlePath={titlePath}
-          key={titlePath.join('.') + 'panel'}
         />
       )}
     </div>
