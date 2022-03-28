@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Menu from "./Menu";
+import Panel from "./Panel";
 
 function Sheet ({ sheet, setSheet }) {
 
-  const [displayedPanels, setDisplayedPanels] = useState([[]])
+  const [displayedMenus, setDisplayedMenus] = useState([[]])
+  const [displayed, setDisplayed] = useState([])
+
+  function renderMenu(titlePath) {
+    return (
+      <Menu
+        sheet={sheet}
+        setSheet={setSheet}
+        displayedMenus={displayedMenus}
+        setDisplayedMenus={setDisplayedMenus}
+        titlePath={titlePath}
+      />
+    )
+  }
+
+  useEffect(() => {
+    setDisplayed(displayedMenus.map(titlePath => renderMenu(titlePath)))
+  }, [displayedMenus]);
 
   return (
     <div>
-      {displayedPanels.map( titlePath =>
-        <Menu
+      {displayed.map( panelContent =>
+        <Panel
           sheet={sheet}
           setSheet={setSheet}
-          displayedPanels={displayedPanels}
-          setDisplayedPanels={setDisplayedPanels}
-          titlePath={titlePath}
+          displayedMenus={displayedMenus}
+          setDisplayedMenus={setDisplayedMenus}
+          panelContent={panelContent}
         />
       )}
     </div>

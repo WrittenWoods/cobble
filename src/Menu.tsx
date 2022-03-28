@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MenuItem from './MenuItem'
 
-function Menu ({ sheet, setSheet, titlePath, setDisplayedPanels, displayedPanels }) {
+function Menu ({ sheet, setSheet, titlePath, setDisplayedMenus, displayedMenus }) {
 
   function titlePathMatch(sheetPath, inputPath) {
     let match = true
@@ -26,8 +26,8 @@ function Menu ({ sheet, setSheet, titlePath, setDisplayedPanels, displayedPanels
         <MenuItem
           sheet={sheet}
           setSheet={setSheet}
-          displayedPanels={displayedPanels}
-          setDisplayedPanels={setDisplayedPanels}
+          displayedMenus={displayedMenus}
+          setDisplayedMenus={setDisplayedMenus}
           titlePath={[...titlePath, x]}
           key={[...titlePath, x].join('.') + 'menu item'}
         />

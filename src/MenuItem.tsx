@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { parseContent } from "./helpers/parseContent";
 import { arrayEquals } from "./helpers/arrayEquals";
 
-function MenuItem ({ sheet, titlePath, displayedPanels, setDisplayedPanels }) {
+function MenuItem ({ sheet, titlePath, displayedMenus, setDisplayedMenus }) {
 
   let contentAtPath;
 
@@ -22,7 +22,7 @@ function MenuItem ({ sheet, titlePath, displayedPanels, setDisplayedPanels }) {
       return titlePath[titlePath.length - 1] + " : " + contentAtPath
     } else if (!isMatch || Array.isArray(contentAtPath)) {
       return (
-        <button onClick={() => setDisplayedPanels([...displayedPanels, titlePath])}>
+        <button onClick={() => setDisplayedMenus([...displayedMenus, titlePath])}>
           {titlePath[titlePath.length - 1]}
         </button>
       )
