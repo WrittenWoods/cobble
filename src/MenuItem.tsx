@@ -17,14 +17,22 @@ function MenuItem ({ sheet, titlePath, displayedMenus, setDisplayedMenus }) {
     return match
   })();
 
+  function handleClick() {
+    if (displayedMenus.some(e => arrayEquals(e, titlePath))) {
+      console.log("this should bring the selected panel to the front")
+    } else {
+      setDisplayedMenus([...displayedMenus, titlePath])
+    }
+  }
+
   function menuItemContent() {
     if (isMatch && typeof contentAtPath === 'string') {
       return titlePath[titlePath.length - 1] + " : " + contentAtPath
     } else if (!isMatch || Array.isArray(contentAtPath)) {
       return (
-        <button onClick={() => setDisplayedMenus([...displayedMenus, titlePath])}>
+        <span onClick={() => handleClick()}>
           {titlePath[titlePath.length - 1]}
-        </button>
+        </span>
       )
     }
   }

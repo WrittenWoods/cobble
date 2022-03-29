@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Menu from "./Menu";
+import List from "./List";
 import Panel from "./Panel";
 
 function Sheet ({ sheet, setSheet }) {
 
   const [displayedMenus, setDisplayedMenus] = useState([[]])
+  const [displayedLists, setDisplayedLists] = useState([])
   const [displayed, setDisplayed] = useState([])
 
   function renderMenu(titlePath) {
@@ -19,8 +21,23 @@ function Sheet ({ sheet, setSheet }) {
     )
   }
 
+  function renderList(listContent) {
+    return (
+      <List
+        sheet={sheet}
+        setSheet={setSheet}
+        displayedLists={displayedLists}
+        setDisplayedLists={setDisplayedLists}
+        listContent={listContent}
+      />
+    )
+  }
+
   useEffect(() => {
-    setDisplayed(displayedMenus.map(titlePath => renderMenu(titlePath)))
+    setDisplayed([
+      ...displayedMenus.map(titlePath => renderMenu(titlePath)),
+      ...displayedLists.map(listItems => renderList(listItems))
+    ])
   }, [displayedMenus]);
 
   return (
