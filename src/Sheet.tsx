@@ -5,49 +5,24 @@ import Panel from "./Panel";
 
 function Sheet ({ sheet, setSheet }) {
 
-  const [displayedMenus, setDisplayedMenus] = useState([[]])
-  const [displayedLists, setDisplayedLists] = useState([])
+  // Array of props for each currently open panel
+
   const [displayed, setDisplayed] = useState([])
 
-  function renderMenu(titlePath) {
-    return (
-      <Menu
-        sheet={sheet}
-        setSheet={setSheet}
-        displayedMenus={displayedMenus}
-        setDisplayedMenus={setDisplayedMenus}
-        titlePath={titlePath}
-      />
-    )
-  }
-
-  function renderList(listContent) {
-    return (
-      <List
-        sheet={sheet}
-        setSheet={setSheet}
-        displayedLists={displayedLists}
-        setDisplayedLists={setDisplayedLists}
-        listContent={listContent}
-      />
-    )
-  }
-
   useEffect(() => {
-    setDisplayed([
-      ...displayedMenus.map(titlePath => renderMenu(titlePath)),
-      ...displayedLists.map(listItems => renderList(listItems))
-    ])
-  }, [displayedMenus]);
 
+    // Displays initial menu if "displayed" array in state is emptied
+    if (displayed.length === 0) { setDisplayed([{ panelType: "menu", panelProps: [] }]) }
+
+  }, [displayed]);
+
+  // Renders a Panel component for each object in "displayed" state.
+  
   return (
     <div>
       {displayed.map( panelContent =>
         <Panel
-          sheet={sheet}
-          setSheet={setSheet}
-          displayedMenus={displayedMenus}
-          setDisplayedMenus={setDisplayedMenus}
+          sheetState={[sheet, setSheet, displayed, setDisplayed]}
           panelContent={panelContent}
         />
       )}
