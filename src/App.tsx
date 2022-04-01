@@ -3,12 +3,12 @@ import './App.css';
 import { starterSheetData } from "./starterSheetData";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { NestedBlock, SearchBlock } from "./helpers/interfaces";
-import { parseContent } from "./helpers/parseContent";
+import { parseSheet } from "./helpers/parseSheet";
 import Sheet from "./Sheet";
 
 function App() {
 
-  const [sheet, setSheet] = useState(oneDimensionalSheet(starterSheetData))
+  const [sheet, setSheet] = useState(parseSheet(oneDimensionalSheet(starterSheetData)))
 
   return (
     <div className="App">

@@ -6,12 +6,7 @@ import Panel from "./Panel";
 function Sheet ({ sheet, setSheet }) {
 
   // Array of props for each currently open panel
-  const [displayed, setDisplayed] = useState([])
-
-  useEffect(() => {
-    // Displays initial menu if "displayed" array in state is emptied
-    if (displayed.length === 0) { setDisplayed([{ panelType: "menu", panelProps: [] }]) }
-  }, [displayed]);
+  const [displayed, setDisplayed] = useState([{ panelType: "menu", panelProps: [] }])
 
   // Renders a Panel component for each object in "displayed" state.
   return (
