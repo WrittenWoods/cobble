@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function List ({ listState, listContent }) {
+function List ({ sheetState, listContent }) {
 
-  const [sheet, setSheet, displayed, setDisplayed] = [...listState]
+  const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
   return (
     <ul>

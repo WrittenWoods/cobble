@@ -14,6 +14,13 @@ function Panel ({ sheetState, panelContent }) {
           titlePath={panelContent.panelProps}
         />
       )
+    } else if (panelContent.panelType === "list") {
+      return (
+        <List
+          sheetState={sheetState}
+          listContent={panelContent.panelProps}
+        />
+      )
     }
   }
 

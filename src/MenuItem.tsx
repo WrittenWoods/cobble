@@ -27,7 +27,9 @@ function MenuItem ({ sheetState, newTitlePath }) {
   function handleClick() {
     if (displayed.some(e => arrayEquals(e.panelProps, newTitlePath))) {
       console.log("this should bring the selected panel to the front")
-    } else {
+    } else if (Array.isArray(contentAtPath)) {
+      setDisplayed([...displayed, { panelType: "list", panelProps: contentAtPath }])
+    } else if (!isMatch) {
       setDisplayed([...displayed, { panelType: "menu", panelProps: newTitlePath }])
     }
   }
