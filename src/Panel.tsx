@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Menu from "./Menu";
 import List from "./List";
+import { PanelProps } from "./helpers/interfaces";
 
-function Panel ({ sheetState, panelContent }) {
+function Panel ({ sheetState, panelContent }: PanelProps) {
 
   // uses the panelType property of panelState to render a corresponding component.
 

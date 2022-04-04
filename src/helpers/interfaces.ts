@@ -1,3 +1,5 @@
+import { SheetState } from "./types";
+
 /*
 
 -A "block" in the context of this project is a single discrete named field in a character sheet.
@@ -18,4 +20,34 @@ export interface NestedBlock {
 export interface SearchBlock {
   titlePath: string[],
   content: string | string[]
+}
+
+export interface DisplayedPanel {
+  panelType: string,
+  panelProps: string[]
+}
+
+export interface SheetProps {
+  sheet: SearchBlock[],
+  setSheet: (a:SearchBlock[])=>void
+}
+
+export interface MenuProps {
+  sheetState: SheetState,
+  titlePath: string[]
+}
+
+export interface ListProps {
+  sheetState: SheetState,
+  listContent: string[]
+}
+
+export interface MenuItemProps {
+  sheetState: SheetState,
+  newTitlePath: string[]
+}
+
+export interface PanelProps {
+  sheetState: SheetState,
+  panelContent: { panelType: string, panelProps: string[] }
 }

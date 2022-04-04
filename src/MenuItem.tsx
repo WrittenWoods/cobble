@@ -3,15 +3,16 @@ import { parseContent } from "./helpers/parseContent";
 import { arrayEquals } from "./helpers/arrayEquals";
 import { parseSheet } from "./helpers/parseSheet";
 import { titlePathMatch } from "./helpers/titlePathMatch"
+import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 
-function MenuItem ({ sheetState, newTitlePath }) {
+function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
   const [editMode, toggleEditMode] = useState(false)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
   const [content, setContent] = useState()
 
-  let contentAtPath, matchIndex;
+  let contentAtPath: string | string[], matchIndex: number;
 
   // Represents whether there's an element in the sheet matching the new titlePath
   // If there is, assigns the "content" property of that element to contentAtPath
@@ -34,7 +35,7 @@ function MenuItem ({ sheetState, newTitlePath }) {
 
     let updated = [...sheet]
 
-    function replaceTitle(arr) {
+    function replaceTitle(arr: SearchBlock[]) {
       for (let i = 0; i < arr.length; i++) {
         if (titlePathMatch(arr[i].titlePath, newTitlePath)) {
           arr[i].titlePath[newTitlePath.length - 1] = title

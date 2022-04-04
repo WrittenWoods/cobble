@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { ListProps } from "./helpers/interfaces";
 
-function List ({ sheetState, listContent }) {
+function List ({ sheetState, listContent }: ListProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
