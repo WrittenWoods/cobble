@@ -83,7 +83,11 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     if (displayed.some(e => arrayEquals(e.panelProps, newTitlePath))) {
       console.log("this should bring the selected panel to the front")
     } else if (Array.isArray(contentAtPath)) {
-      setDisplayed([...displayed, { panelType: "list", panelProps: contentAtPath }])
+      if ((displayed.some(e => arrayEquals(e.panelProps, contentAtPath)))) {
+        console.log("this should bring the selected panel to the front")
+      } else {
+        setDisplayed([...displayed, { panelType: "list", panelProps: contentAtPath }])
+      }
     } else if (!isMatch) {
       setDisplayed([...displayed, { panelType: "menu", panelProps: newTitlePath }])
     }
@@ -102,6 +106,8 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
       )
     }
   }
+
+  // returns content of the menu item component when editMode is toggled on
 
   function editModeContent() {
     if (isMatch && typeof contentAtPath === 'string') {

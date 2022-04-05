@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Menu from "./Menu";
-import List from "./List";
 import Panel from "./Panel";
 import { SheetProps } from "./helpers/interfaces";
 
