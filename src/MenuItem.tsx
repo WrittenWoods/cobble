@@ -10,24 +10,31 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
   const [editMode, toggleEditMode] = useState(false)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
-  const [content, setContent] = useState()
+  const [contentAtPath, setContentAtPath] = useState(getMenuItemVals()[2])
 
-  let contentAtPath: string | string[], matchIndex: number;
+  let [isMatch, matchIndex] = [getMenuItemVals()[0], getMenuItemVals()[1]]
 
   // Represents whether there's an element in the sheet matching the new titlePath
   // If there is, assigns the "content" property of that element to contentAtPath
 
-  const isMatch = (function () {
-    let match = false
+  function getMenuItemVals () {
     for (let i = 0; i < sheet.length; i++) {
       if (arrayEquals(sheet[i].titlePath, newTitlePath)) {
-        match = true
-        matchIndex = i
-        contentAtPath = sheet[i].content
+        return [true, i, sheet[i].content]
       }
     }
-    return match
-  })();
+    return [false, undefined, undefined]
+  };
+
+  function getContentAtPath() {
+    let result
+    for (let i = 0; i < sheet.length; i++) {
+      if (arrayEquals(sheet[i].titlePath, newTitlePath)) {
+        result = sheet[i].content
+      }
+    }
+    return result
+  };
 
   // Updates sheet with edited title and content values
 
@@ -44,7 +51,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
 
     if (isMatch) {
-      updated[i].content = content
+      updated[matchIndex].content = contentAtPath
       replaceTitle(updated)
     } else {
       replaceTitle(updated)
@@ -101,7 +108,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
       return (
         <span>
           <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+          <textarea value={contentAtPath} onChange={(e) => setContentAtPath(e.target.value)} />
         </span>
       )
     } else if (!isMatch || Array.isArray(contentAtPath)) {
