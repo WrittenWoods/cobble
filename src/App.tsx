@@ -4,12 +4,11 @@ import { starterSheetData } from "./starterSheetData";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { NestedBlock, SearchBlock } from "./helpers/interfaces";
 import { AppState } from "./helpers/types"
-import { parseSheet } from "./helpers/parseSheet";
 import Sheet from "./Sheet";
 
 function App() {
 
-  const [sheet, setSheet]: AppState = useState(parseSheet(oneDimensionalSheet(starterSheetData)))
+  const [sheet, setSheet]: AppState = useState(oneDimensionalSheet(starterSheetData))
 
   return (
     <div className="App">
