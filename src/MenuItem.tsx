@@ -24,7 +24,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   function getMenuItemVals () {
     for (let i = 0; i < sheet.length; i++) {
       if (arrayEquals(sheet[i].titlePath, newTitlePath)) {
-        return [true, i, parseContent(sheet[i].content, sheet)]
+        return [true, i, sheet[i].content]
       }
     }
     return [false, undefined, undefined]
@@ -91,7 +91,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   function menuItemContent() {
     if (isMatch && typeof contentAtPath === 'string') {
-      return <span>{newTitlePath[newTitlePath.length - 1] + " : " + contentAtPath}</span>
+      return <span>{newTitlePath[newTitlePath.length - 1] + " : " + parseContent(contentAtPath, sheet)}</span>
     } else if (!isMatch || Array.isArray(contentAtPath)) {
       return (
         <span onClick={() => handleMenuItemClick()}>
