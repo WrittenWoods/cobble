@@ -6,14 +6,19 @@ import { evaluate } from 'mathjs';
 // Function that finds bracketed text in a string
 // and parses it for block content, dice rolls, mathematical operations
 
-export const parseContent = (content: string | string[], sheet: SearchBlock[]) => {
+export const parseContent = (
+  content: string | string[],
+  sheet: SearchBlock[],
+  isDiceButtonClick: boolean = false
+): { contentType: string; result: string | string[]; } => {
 
-  let result: string | string[];
+  let result: { contentType: string, result: string | string[] };
 
   // Function that parses the contents of bracketed text in a block
 
-  function parseBracket (str: string): string {
+  function parseBracket (str: string): { isButton: boolean, result: string } {
 
+    let isButton = false
     let result = str.replaceAll(/\[|\]/g, "")
 
     // Find and replace title paths with corresponding content
@@ -27,13 +32,17 @@ export const parseContent = (content: string | string[], sheet: SearchBlock[]) =
     let toRecurse = [...result.matchAll(/\[(.)*?\]/g)].map(a => a[0])
     if (toRecurse.length) {
       for (let i = 0; i < toRecurse.length; i++) {
-        result = result.replace(toRecurse[i], parseBracket(toRecurse[i]))
+        result = result.replace(toRecurse[i], parseBracket(toRecurse[i]).result)
       }
     }
 
     // Find and replace dice roll results
 
     let rollArray = [...result.matchAll(/([\d]+d[\d]+)/g)].map(a => a[0])
+    if (rollArray.length) { isButton = !isDiceButtonClick }
+    if (isButton) {
+      return { isButton: isButton, result: `[${result}]` }
+    }
     let rolledArray = rollArray.map(x => diceRoller(x))
     for (let i = 0; i < rollArray.length; i++) {
       result = result.replace(rollArray[i], rolledArray[i])
@@ -48,27 +57,31 @@ export const parseContent = (content: string | string[], sheet: SearchBlock[]) =
       result = result.replace(mathArray[i], calculatedArray[i].toString())
     }
 
-    return result
+    return { isButton: isButton, result: result }
   }
 
   // Function that finds and calls the parseBracket function on each set
   // of bracketed text in a string then returns interpolated string
 
   function parseBracketsInString (str: string) {
+    let isButton = false
     let newStr = str
     let bracketsArray = [...str.matchAll(/\[(.)*?\]/g)].map(a => a[0])
     let interpretedArray = bracketsArray.map(x => parseBracket(x))
     for (let i = 0; i < interpretedArray.length; i++) {
-      newStr = newStr.replace(bracketsArray[i], interpretedArray[i])
+      if (interpretedArray[i].isButton) { isButton = true }
+      newStr = newStr.replace(bracketsArray[i], interpretedArray[i].result)
     }
-    return newStr
+    return { isButton: isButton, result: newStr}
   }
 
   // Returns result depending on whether content is single string or array of strings
 
   result = Array.isArray(content) ?
-    content.map(x => parseBracketsInString(x))
-    : parseBracketsInString(content)
+    { contentType: "list", parsedContent: content.map(x => parseBracketsInString(x).result) }
+    :
+    { contentType: parseBracketsInString(content).isButton ? "button" : "text" ,
+      parsedContent: parseBracketsInString(content).result }
 
   return result
 

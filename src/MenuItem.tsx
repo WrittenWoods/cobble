@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { parseContent } from "./helpers/parseContent";
-import { parseSheet } from "./helpers/parseSheet";
 import { arrayEquals } from "./helpers/arrayEquals";
 import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
@@ -90,15 +89,26 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   // returns the text of the menu item
 
   function menuItemContent() {
-    if (isMatch && typeof contentAtPath === 'string') {
-      return <span>{newTitlePath[newTitlePath.length - 1] + " : " + parseContent(contentAtPath, sheet)}</span>
-    } else if (!isMatch || Array.isArray(contentAtPath)) {
+
+    let toRender
+    if (contentAtPath) { toRender = parseContent(contentAtPath, sheet) }
+
+    if (isMatch && toRender.contentType === "text") {
+      return <span>{title + " : " + toRender.parsedContent}</span>
+    } else if (isMatch && toRender.contentType === "button") {
+      return (
+        <button onClick={() => console.log(parseContent(toRender.parsedContent, sheet, true).parsedContent) } >
+          {title + " : " + toRender.parsedContent}
+        </button>
+      )
+    } else if (!isMatch || isMatch && toRender.contentType === "list") {
       return (
         <span onClick={() => handleMenuItemClick()}>
-          {newTitlePath[newTitlePath.length - 1]}
+          {title}
         </span>
       )
     }
+
   }
 
   // returns content of the menu item component when editMode is toggled on
