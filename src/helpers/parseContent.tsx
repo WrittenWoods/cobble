@@ -10,7 +10,7 @@ export const parseContent = (
   content: string | string[],
   sheet: SearchBlock[],
   isDiceButtonClick: boolean = false
-): { contentType: string; result: string | string[]; } => {
+): { contentType: string; parsedContent: string | string[]; } => {
 
   let result: { contentType: string, result: string | string[] };
 

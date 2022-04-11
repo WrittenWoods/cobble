@@ -6,8 +6,8 @@ function List ({ sheetState, listContent }: ListProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
-  function listItemContent(e) {
-    let toRender
+  function listItemContent(e: string) {
+    let toRender: undefined | { contentType: string, parsedContent: string | string[] } = undefined
     if (e) { toRender = parseContent(e, sheet) }
 
     if (toRender.contentType === "text") {
