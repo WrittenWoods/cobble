@@ -137,7 +137,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   // returns content of the menu item component when editMode is toggled on
 
   function editModeContent() {
-    if (isMatch && contentType === 'text' || 'button') {
+    if (isMatch && typeof contentAtPath === 'string') {
       return (
         <span>
           <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
