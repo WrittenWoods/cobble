@@ -7,12 +7,12 @@ import { evaluate } from 'mathjs';
 // and parses it for block content, dice rolls, mathematical operations
 
 export const parseContent = (
-  content: string | string[],
+  content: string,
   sheet: SearchBlock[],
   isDiceButtonClick: boolean = false
-): { contentType: string; parsedContent: string | string[]; } => {
+): { contentType: string; parsedContent: string; } => {
 
-  let result: { contentType: string, result: string | string[] };
+  let result: { contentType: string, result: string };
 
   // Function that parses the contents of bracketed text in a block
 

@@ -64,7 +64,7 @@ export const starterSheetData: NestedBlock[] = [
       { title: `bow`, content: `[1d8] piercing, [1d6] fire` }
     ]},
 
-    { title: `passive wisdom`, content: `[perception]` },
+    { title: `passive wisdom`, content: `[mainPage.skills.perception]` },
 
     { title: `money`, content: `[50] gold pieces`},
     { title: `equipment`, content: `backpack, bedroll, rope` },

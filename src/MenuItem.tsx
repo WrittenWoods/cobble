@@ -8,10 +8,12 @@ import ContextMenu from "./ContextMenu";
 function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
+
   const [editMode, toggleEditMode] = useState(false)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
   const [contentAtPath, setContentAtPath] = useState(getMenuItemVals()[2])
   const [showContextMenu, toggleContextMenu] = useState(false)
+  const [showInPanel, toggleShowInPanel] = useState(true)
 
   let [isMatch, matchIndex] = [...getMenuItemVals().slice(0, 2)]
   let contentType = "menu";
@@ -46,7 +48,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
       }
     }
 
-    if (isMatch) {
+    if (isMatch && showInPanel) {
       updated[matchIndex].content = contentAtPath
       replaceTitle(updated)
     } else {
@@ -90,6 +92,12 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
   }
 
+  function openContentPanel() {
+    if (!showInPanel) {
+      setDisplayed([...displayed, { panelType: "content", panelProps: newTitlePath }])
+    }
+  }
+
   // returns the text of the menu item
 
   function menuItemContent() {
@@ -100,20 +108,16 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
       contentType = toRender.contentType
     }
 
-    if (isMatch && contentType === "text") {
+    if (isMatch) {
       return (
         <span onContextMenu={(e) => handleContextMenuClick(e)} >
-          {title + " : " + toRender.parsedContent}
+          <button onClick={() => toggleShowInPanel(!showInPanel)}>
+            {showInPanel ? "show in new window" : "show in panel"}
+          </button>
+          <span onClick={() => openContentPanel()}>
+            { showInPanel ? title + " : " + toRender.parsedContent : title }
+          </span>
         </span>
-      )
-    } else if (isMatch && contentType === "button") {
-      return (
-        <button
-          onClick={() => console.log(parseContent(toRender.parsedContent, sheet, true).parsedContent) }
-          onContextMenu={(e) => handleContextMenuClick(e)}
-        >
-          {title + " : " + toRender.parsedContent}
-        </button>
       )
     } else if (!isMatch) {
       return (

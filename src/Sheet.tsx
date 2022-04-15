@@ -14,7 +14,7 @@ function Sheet ({ sheet, setSheet }: SheetProps) {
         <Panel
           sheetState={[sheet, setSheet, displayed, setDisplayed]}
           panelContent={panelContent}
-          key={panelContent.panelProps.join('.') + ' panel'}
+          key={JSON.stringify(panelContent.panelProps) + ' panel'}
         />
       )}
     </div>
