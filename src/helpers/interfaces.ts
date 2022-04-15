@@ -12,14 +12,14 @@ import { SheetState } from "./types";
 
 export interface NestedBlock {
   title: string,
-  content: string | string[] | NestedBlock[]
+  content: string | NestedBlock[]
 }
 
 // Blocks as they exist in the one-dimensional object array form of a character sheet
 
 export interface SearchBlock {
   titlePath: string[],
-  content: string | string[]
+  content: string
 }
 
 export interface DisplayedPanel {
@@ -35,11 +35,6 @@ export interface SheetProps {
 export interface MenuProps {
   sheetState: SheetState,
   titlePath: string[]
-}
-
-export interface ListProps {
-  sheetState: SheetState,
-  listContent: string[]
 }
 
 export interface MenuItemProps {

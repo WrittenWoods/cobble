@@ -5,7 +5,7 @@ import { SearchBlock } from "./interfaces";
 
 export const getOneDContent = (titlePath: string, sheet: SearchBlock[]): string | string[] => {
 
-  let content: string | string[] = []
+  let content: string = ""
 
   function matchTitlePath (str: string, arr: string[]): boolean {
     let newStr = arr.map(x => x.toLowerCase().replace(/[\s]+|\-/, "")).join('.')

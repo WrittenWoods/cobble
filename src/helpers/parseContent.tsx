@@ -77,12 +77,7 @@ export const parseContent = (
 
   // Returns result depending on whether content is single string or array of strings
 
-  result = Array.isArray(content) ?
-    { contentType: "list", parsedContent: content.map(x => parseBracketsInString(x).result) }
-    :
-    { contentType: parseBracketsInString(content).isButton ? "button" : "text" ,
+  return { contentType: parseBracketsInString(content).isButton ? "button" : "text" ,
       parsedContent: parseBracketsInString(content).result }
-
-  return result
 
 }

@@ -67,16 +67,16 @@ export const starterSheetData: NestedBlock[] = [
     { title: `passive wisdom`, content: `[perception]` },
 
     { title: `money`, content: `[50] gold pieces`},
-    { title: `equipment`, content: [`backpack`, `bedroll`, `rope`] },
+    { title: `equipment`, content: `backpack, bedroll, rope` },
 
-    { title: `features & traits`, content: [
-      `Bardic Inspiration [1d8]`,
-      `Jack of All Trades (+[mainpage.classLevels.bard / 2] bonus)`,
-      `Song of Rest [d6]`,
-      `Expertise (persuasion, history)`,
-      `Font of Inspiration`,
-      `Cutting Words`
-    ]},
+    { title: `features & traits`, content:
+      `Bardic Inspiration [1d8],
+      Jack of All Trades (+[mainpage.classLevels.bard / 2] bonus),
+      Song of Rest [d6],
+      Expertise (persuasion, history),
+      Font of Inspiration,
+      Cutting Words`
+    },
 
   ]},
 
@@ -85,10 +85,10 @@ export const starterSheetData: NestedBlock[] = [
     { title: `spell attack bonus`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
 
     { title: `spells`, content: [
-      { title: `cantrips`, content: [`true strike`, `dancing lights`, `mending`]},
-      { title: `1st level`, content: [`cure wounds`, `tashas hideous laughter`, `feather fall`, `identify`] },
-      { title: `2nd level`, content: [`hold person`, `invisibility`, `blindness/deafness`] },
-      { title: `3rd level`, content: [`clairvoyance`] }
+      { title: `cantrips`, content: `true strike, dancing lights, mending`},
+      { title: `1st level`, content: `cure wounds, tashas hideous laughter, feather fall, identify` },
+      { title: `2nd level`, content: `hold person, invisibility, blindness/deafness` },
+      { title: `3rd level`, content: `clairvoyance` }
     ]},
   ]}
 

@@ -85,12 +85,6 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   function handleMenuItemClick() {
     if (displayed.some(e => arrayEquals(e.panelProps, newTitlePath))) {
       console.log("this should bring the selected panel to the front")
-    } else if (Array.isArray(contentAtPath)) {
-      if ((displayed.some(e => arrayEquals(e.panelProps, contentAtPath)))) {
-        console.log("this should bring the selected panel to the front")
-      } else {
-        setDisplayed([...displayed, { panelType: "list", panelProps: contentAtPath }])
-      }
     } else if (!isMatch) {
       setDisplayed([...displayed, { panelType: "menu", panelProps: newTitlePath }])
     }
@@ -100,7 +94,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   function menuItemContent() {
 
-    let toRender: undefined | { contentType: string, parsedContent: string | string[] } = undefined
+    let toRender: undefined | { contentType: string, parsedContent: string } = undefined
     if (contentAtPath) {
       toRender = parseContent(contentAtPath, sheet)
       contentType = toRender.contentType
@@ -121,7 +115,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
           {title + " : " + toRender.parsedContent}
         </button>
       )
-    } else if (!isMatch || isMatch && contentType === "list") {
+    } else if (!isMatch) {
       return (
         <span
           onClick={() => handleMenuItemClick()}
@@ -131,20 +125,19 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
         </span>
       )
     }
-
   }
 
   // returns content of the menu item component when editMode is toggled on
 
   function editModeContent() {
-    if (isMatch && contentType === 'text' || 'button') {
+    if (isMatch) {
       return (
         <span>
           <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
           <textarea value={contentAtPath} onChange={(e) => setContentAtPath(e.target.value)} />
         </span>
       )
-    } else if (!isMatch || Array.isArray(contentAtPath)) {
+    } else if (!isMatch) {
       return (
         <span>
           <textarea value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -159,11 +152,6 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     <li>
       <button onClick={() => handleEditButtonClick()}>{editMode ? "save" : "edit"}</button>
       {editMode ? editModeContent() : menuItemContent()}
-      {showContextMenu
-        &&
-      <ContextMenu
-        contextMenuState={[contentType, toggleEditMode, showContextMenu]}
-      />}
     </li>
   )
 }

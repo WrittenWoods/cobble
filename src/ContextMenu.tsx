@@ -11,7 +11,7 @@ function ContextMenu ({ contextMenuState }) {
   function contextMenuContents() {
     let result = []
 
-    if (["text", "list", "menu"].includes(contentType)) {
+    if (["text", "menu"].includes(contentType)) {
       result.push(
         <button onClick={() => toggleEditMode(true)}>
           Edit
