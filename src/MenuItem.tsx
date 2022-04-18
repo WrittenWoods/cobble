@@ -93,7 +93,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   }
 
   function openContentPanel() {
-    if (!showInPanel) {
+    if (!showInPanel && !displayed.some( x => arrayEquals(x.panelProps, newTitlePath) )) {
       setDisplayed([...displayed, { panelType: "content", panelProps: newTitlePath }])
     }
   }

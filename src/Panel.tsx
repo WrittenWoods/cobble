@@ -6,6 +6,8 @@ import { PanelProps } from "./helpers/interfaces";
 
 function Panel ({ sheetState, panelContent }: PanelProps) {
 
+  const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
+
   // uses the panelType property of panelState to render a corresponding component.
 
   function renderPanelContents() {
@@ -32,10 +34,19 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
     }
   }
 
+  function closePanel() {
+    return (
+      <button onClick={
+        () => setDisplayed(displayed.filter( x => x.panelProps !== panelContent.panelProps))
+      }>x</button>
+    )
+  }
+
   // Renders the panel with contents.
 
   return (
     <div>
+      {closePanel()}
       {renderPanelContents()}
     </div>
   )
