@@ -8,6 +8,8 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
+  const [renderedPanel, setRenderedPanel] = useState(renderPanelContents())
+
   // uses the panelType property of panelState to render a corresponding component.
 
   function renderPanelContents() {
@@ -35,11 +37,13 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   }
 
   function closePanel() {
-    return (
-      <button onClick={
-        () => setDisplayed(displayed.filter( x => x.panelProps !== panelContent.panelProps))
-      }>x</button>
-    )
+    if (panelContent.panelProps.length !== 0) {
+      return (
+        <button onClick={
+          () => setDisplayed(displayed.filter( x => x.panelProps !== panelContent.panelProps))
+        }>x</button>
+      )
+    }
   }
 
   // Renders the panel with contents.
@@ -47,7 +51,7 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   return (
     <div>
       {closePanel()}
-      {renderPanelContents()}
+      {renderedPanel}
     </div>
   )
 

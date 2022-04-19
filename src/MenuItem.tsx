@@ -5,11 +5,11 @@ import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ContextMenu from "./ContextMenu";
 
-function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
+function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
-  const [editMode, toggleEditMode] = useState(false)
+  const [editMode, toggleEditMode] = useState(initialEditMode)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
   const [contentAtPath, setContentAtPath] = useState(getMenuItemVals()[2])
   const [showContextMenu, toggleContextMenu] = useState(false)
