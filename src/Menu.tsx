@@ -8,8 +8,6 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
-  const [renderedMenu, setRenderedMenu] = useState(renderMenu())
-
   // Creates an array of selectable menu items to render as MenuItem components.
 
   function menuItemList() {
@@ -21,44 +19,42 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
     return result
   }
 
-  // Adds a new menu item
+  // Adds a new menu item or submenu
 
-  function addMenuItem() {
+  function addMenuItem(str) {
     let lastIndex = 0
     let newSheet = sheet
+    let newItem
+
+    if (str === "menu item") {
+      newItem = { titlePath: [...titlePath.slice(0, titlePath.length), "new item"], content: "new item" }
+    } else if (str === "submenu") {
+      newItem = { titlePath: [...titlePath.slice(0, titlePath.length), "new menu", "new item"], content: "new item" }
+    }
+
     for (let i = 0; i < sheet.length; i++) {
       if (arrayEquals(sheet[i].titlePath.slice(0, titlePath.length), titlePath)) {
         lastIndex = i
       }
     }
-    newSheet.splice(lastIndex + 1, 0, { titlePath: [...titlePath.slice(0, titlePath.length), "new item"], content: "new item" })
-    setSheet(newSheet)
-    setRenderedMenu(renderMenu())
+    newSheet.splice(lastIndex + 1, 0, newItem)
+    setSheet([...newSheet])
   }
-
-  function renderMenu() {
-    console.log(titlePath)
-    return(
-      menuItemList().map( x =>
-        <MenuItem
-          sheetState={[sheet, setSheet, displayed, setDisplayed]}
-          newTitlePath={[...titlePath, x]}
-          initialEditMode={x === "new item" ? true : false}
-          key={[...titlePath, x].join('.') + 'menu item'}
-        />
-      )
-    )
-  }
-
-  // Adds a new submenu
 
   // Creates a menu of selectable MenuItem components.
 
   return (
     <div>
-      <button onClick={() => addMenuItem()}>add new menu item</button>
+      <button onClick={() => addMenuItem("menu item")}>add new menu item</button>
+      <button onClick={() => addMenuItem("submenu")}>add new submenu</button>
       <ul>
-        {renderedMenu}
+        {menuItemList().map( x =>
+          <MenuItem
+            sheetState={[sheet, setSheet, displayed, setDisplayed]}
+            newTitlePath={[...titlePath, x]}
+            key={[...titlePath, x].join('.') + 'menu item'}
+          />
+        )}
       </ul>
     </div>
   )
