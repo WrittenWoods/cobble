@@ -75,6 +75,19 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
     updateSheet()
   }
 
+  // Handles clicks of the delete button
+
+  function handleDeleteButtonClick() {
+    let updated = sheet.filter(
+      x => !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
+    )
+    let toDisplay = displayed.filter(
+      x => !arrayEquals(newTitlePath, x.panelProps.slice(0, newTitlePath.length))
+    )
+    setDisplayed(toDisplay)
+    setSheet(updated)
+  }
+
   // Handles menu item context menu clicks
 
   function handleContextMenuClick(e) {
@@ -154,6 +167,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
 
   return (
     <li>
+      <button onClick={() => handleDeleteButtonClick()} >delete</button>
       <button onClick={() => handleEditButtonClick()}>{editMode ? "save" : "edit"}</button>
       {editMode ? editModeContent() : menuItemContent()}
     </li>
