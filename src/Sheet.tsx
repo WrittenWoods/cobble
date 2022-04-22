@@ -7,7 +7,7 @@ function Sheet ({ sheet, setSheet }: SheetProps) {
 
   // Array of props for each currently open panel
   const [displayed, setDisplayed] = useState([{ panelType: "menu", panelProps: [] }])
-  
+
   // Renders a Panel component for each object in "displayed" state.
   return (
     <div>

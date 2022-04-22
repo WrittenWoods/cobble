@@ -16,7 +16,6 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
   const [showInPanel, toggleShowInPanel] = useState(true)
 
   let [isMatch, matchIndex] = [...getMenuItemVals().slice(0, 2)]
-  let contentType = "menu";
 
   useEffect(() => {
     setContentAtPath(getMenuItemVals()[2])
@@ -78,11 +77,11 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
   // Handles clicks of the delete button
 
   function handleDeleteButtonClick() {
-    let updated = sheet.filter(
-      x => !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
-    )
     let toDisplay = displayed.filter(
       x => !arrayEquals(newTitlePath, x.panelProps.slice(0, newTitlePath.length))
+    )
+    let updated = sheet.filter(
+      x => !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
     )
     setDisplayed(toDisplay)
     setSheet(updated)
@@ -115,12 +114,6 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
 
   function menuItemContent() {
 
-    let toRender: undefined | { contentType: string, parsedContent: string } = undefined
-    if (contentAtPath) {
-      toRender = parseContent(contentAtPath, sheet)
-      contentType = toRender.contentType
-    }
-
     if (isMatch) {
       return (
         <span onContextMenu={(e) => handleContextMenuClick(e)} >
@@ -128,7 +121,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
             {showInPanel ? "show in new window" : "show in panel"}
           </button>
           <span onClick={() => openContentPanel()}>
-            { showInPanel ? title + " : " + toRender.parsedContent : title }
+            { showInPanel ? title + " : " + parseContent(contentAtPath, sheet) : title }
           </span>
         </span>
       )
