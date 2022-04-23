@@ -57,7 +57,7 @@ export const starterSheetData: NestedBlock[] = [
     { title: `speed`, content: `30` },
 
     { title: `maximum hit points`, content: `[8 + 8 + 5 * mainPage.abilityModifiers.constitution]` },
-    { title: `current hit points`, content: `23` },
+    { title: `current hit points`, content: `[mainPage.maximumHitPoints + 2]` },
 
     { title: `attacks`, content: [
       { title: `longsword`, content: `[1d8+2] slashing` },
@@ -72,7 +72,7 @@ export const starterSheetData: NestedBlock[] = [
     { title: `features & traits`, content:
       `Bardic Inspiration [1d8],
       Jack of All Trades (+[mainpage.classLevels.bard / 2] bonus),
-      Song of Rest [d6],
+      Song of Rest [1d6],
       Expertise (persuasion, history),
       Font of Inspiration,
       Cutting Words`

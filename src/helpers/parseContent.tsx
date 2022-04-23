@@ -8,7 +8,13 @@ import { evaluate } from 'mathjs';
 
 export const parseContent = (content: string, sheet: SearchBlock[]) => {
 
-  let result: string;
+  function tryEval(string) {
+    try {
+      return evaluate(string)
+    } catch {
+      return string
+    }
+  }
 
   // Function that parses the contents of bracketed text in a block
 
@@ -25,10 +31,11 @@ export const parseContent = (content: string, sheet: SearchBlock[]) => {
       result = result.replace(titlePathsArray[i], contentArray[i])
     }
     let toRecurse = [...result.matchAll(/\[(.)*?\]/g)].map(a => a[0])
-    if (toRecurse.length) {
+    while (toRecurse.length) {
       for (let i = 0; i < toRecurse.length; i++) {
         result = result.replace(toRecurse[i], parseBracket(toRecurse[i]))
       }
+      toRecurse = [...result.matchAll(/\[(.)*?\]/g)].map(a => a[0])
     }
 
     // Find and replace dice roll results
@@ -43,7 +50,7 @@ export const parseContent = (content: string, sheet: SearchBlock[]) => {
 
     let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)|\.| )+/g)]
                     .map(a => a[0])
-    let calculatedArray = mathArray.map(x => /[\S]+/.test(x) ? evaluate(x) : x)
+    let calculatedArray = mathArray.map(x => /[\S]+/.test(x) ? tryEval(x) : x)
     for (let i = 0; i < mathArray.length; i++) {
       result = result.replace(mathArray[i], calculatedArray[i].toString())
     }

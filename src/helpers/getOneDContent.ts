@@ -8,7 +8,7 @@ export const getOneDContent = (titlePath: string, sheet: SearchBlock[]): string 
   let content: string = ""
 
   function matchTitlePath (str: string, arr: string[]): boolean {
-    let newStr = arr.map(x => x.toLowerCase().replace(/[\s]+|\-/, "")).join('.')
+    let newStr = arr.map(x => x.toLowerCase().replaceAll(/[\s]+|\-/g, "")).join('.')
     return newStr === str.toLowerCase()
   }
 
