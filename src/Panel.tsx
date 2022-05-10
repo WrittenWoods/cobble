@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './Panel.css';
 import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
 import ContextMenu from "./ContextMenu";
 import { PanelProps } from "./helpers/interfaces";
+import Draggable from 'react-draggable';
+import { Resizable } from 'react-resizable';
 
 function Panel ({ sheetState, panelContent }: PanelProps) {
 
@@ -47,10 +50,12 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   // Renders the panel with contents.
 
   return (
-    <div>
-      {closePanel()}
-      {renderPanelContents()}
-    </div>
+    <Draggable>
+      <div className="Panel" >
+        {closePanel()}
+        {renderPanelContents()}
+      </div>
+    </Draggable>
   )
 
 }

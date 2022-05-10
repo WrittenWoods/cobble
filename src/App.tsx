@@ -13,11 +13,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Sheet
-          sheet={sheet}
-          setSheet={setSheet}
-        />
+        <h2>Cobble</h2>
       </header>
+      <Sheet
+        sheet={sheet}
+        setSheet={setSheet}
+      />
     </div>
   );
 }
