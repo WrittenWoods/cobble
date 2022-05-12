@@ -7,13 +7,21 @@ function SaveMenu ({ sheet, setSheet }) {
   const [showSaveData, setShowSaveData] = useState(false)
   const [showLoadField, setShowLoadField] = useState(false)
   const [loadFieldContent, setLoadFieldContent] = useState("")
+  const [showError, setShowError] = useState(false)
 
   function handleLoadButtonClick() {
-    if (showLoadField && loadFieldContent) {
-      setSheet(oneDimensionalSheet(JSON.parse(loadFieldContent)))
+
+    if (showLoadField) {
+      try {
+        setSheet(oneDimensionalSheet(JSON.parse(loadFieldContent)))
+        setShowError(false)
+        setShowLoadField(false)
+      } catch {
+        setShowError(true)
+      }
     }
-    console.log(showLoadField)
-    setShowLoadField(!showLoadField)
+
+    if (!showLoadField) { setShowLoadField(true) }
   }
 
   return (
@@ -22,6 +30,7 @@ function SaveMenu ({ sheet, setSheet }) {
       <button onClick={() => handleLoadButtonClick()}>load</button>
       { showSaveData && <textarea value={JSON.stringify(toNestedSheet(sheet))} /> }
       { showLoadField && <textarea value={loadFieldContent} onChange={(e) => setLoadFieldContent(e.target.value)} /> }
+      { showError && <p>Try again bud</p> }
     </div>
   )
 
