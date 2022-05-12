@@ -4,6 +4,7 @@ import { starterSheetData } from "./starterSheetData";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { NestedBlock, SearchBlock } from "./helpers/interfaces";
 import { AppState } from "./helpers/types"
+import SaveMenu from "./SaveMenu";
 import Sheet from "./Sheet";
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
       <header className="App-header">
         <h2>Cobble</h2>
       </header>
+      <SaveMenu
+        sheet={sheet}
+        setSheet={setSheet}
+      />
       <Sheet
         sheet={sheet}
         setSheet={setSheet}

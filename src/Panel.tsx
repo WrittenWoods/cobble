@@ -50,12 +50,10 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   // Renders the panel with contents.
 
   return (
-    <Draggable>
-      <div className="Panel" >
-        {closePanel()}
-        {renderPanelContents()}
-      </div>
-    </Draggable>
+    <div className="Panel" >
+      {closePanel()}
+      {renderPanelContents()}
+    </div>
   )
 
 }
