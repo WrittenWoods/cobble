@@ -11,6 +11,7 @@ function Sheet ({ sheet, setSheet }: SheetProps) {
   // Renders a Panel component for each object in "displayed" state.
   return (
     <div>
+      <button onClick={() => setDisplayed([{ panelType: "menu", panelProps: [] }]) }>reset</button>
       {displayed.map( panelContent =>
         <Panel
           sheetState={[sheet, setSheet, displayed, setDisplayed]}

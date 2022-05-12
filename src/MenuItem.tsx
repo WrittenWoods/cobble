@@ -110,6 +110,13 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
     }
   }
 
+  function handleShowInPanelButton() {
+    if (!showInPanel) {
+      setDisplayed(displayed.filter(x => x.panelType !== "content" && x.titlePath !== newTitlePath))
+    }
+    toggleShowInPanel(!showInPanel)
+  }
+
   // returns the text of the menu item
 
   function menuItemContent() {
@@ -117,7 +124,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
     if (isMatch) {
       return (
         <span onContextMenu={(e) => handleContextMenuClick(e)} >
-          <button onClick={() => toggleShowInPanel(!showInPanel)}>
+          <button onClick={() => handleShowInPanelButton()}>
             {showInPanel ? "show in new window" : "show in panel"}
           </button>
           <span onClick={() => openContentPanel()}>

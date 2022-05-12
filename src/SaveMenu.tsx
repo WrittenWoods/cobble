@@ -12,12 +12,16 @@ function SaveMenu ({ sheet, setSheet }) {
   function handleLoadButtonClick() {
 
     if (showLoadField) {
-      try {
-        setSheet(oneDimensionalSheet(JSON.parse(loadFieldContent)))
-        setShowError(false)
+      if (loadFieldContent.trim().length === 0) {
         setShowLoadField(false)
-      } catch {
-        setShowError(true)
+      } else {
+        try {
+          setSheet(oneDimensionalSheet(JSON.parse(loadFieldContent)))
+          setShowError(false)
+          setShowLoadField(false)
+        } catch {
+          setShowError(true)
+        }
       }
     }
 
