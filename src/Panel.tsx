@@ -4,8 +4,6 @@ import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
 import ContextMenu from "./ContextMenu";
 import { PanelProps } from "./helpers/interfaces";
-import Draggable from 'react-draggable';
-import { Resizable } from 'react-resizable';
 
 function Panel ({ sheetState, panelContent }: PanelProps) {
 
@@ -22,12 +20,21 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
         />
       )
     } else if (panelContent.panelType === "content") {
-      return (
-        <ContentBlock
-          sheetState={sheetState}
-          titlePath={panelContent.panelProps}
-        />
-      )
+      if (Array.isArray(panelContent.panelProps)) {
+        return (
+          <ContentBlock
+            sheetState={sheetState}
+            titlePath={panelContent.panelProps}
+          />
+        )
+      } else if (typeof panelContent.panelProps === "string") {
+        return (
+          <ContentBlock
+            sheetState={sheetState}
+            blockString={panelContent.panelProps}
+          />
+        )
+      }
     } else if (panelContent.panelType === "context menu") {
       return (
         <ContextMenu

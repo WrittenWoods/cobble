@@ -60,8 +60,8 @@ export const starterSheetData: NestedBlock[] = [
     { title: `current hit points`, content: `[mainPage.maximumHitPoints + 2]` },
 
     { title: `attacks`, content: [
-      { title: `longsword`, content: `[1d8+2] slashing` },
-      { title: `bow`, content: `[1d8] piercing, [1d6] fire` }
+      { title: `longsword`, content: `[1d8 + mainPage.abilityModifiers.dexterity slashing]` },
+      { title: `bow`, content: `[1d8 piercing], [1d6] fire` }
     ]},
 
     { title: `passive wisdom`, content: `[mainPage.skills.perception]` },

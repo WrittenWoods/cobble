@@ -4,6 +4,7 @@ import { arrayEquals } from "./helpers/arrayEquals";
 import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ContextMenu from "./ContextMenu";
+import ParsedContent from "./ParsedContent";
 
 function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps) {
 
@@ -12,7 +13,6 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
   const [editMode, toggleEditMode] = useState(initialEditMode)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
   const [contentAtPath, setContentAtPath] = useState(getMenuItemVals()[2])
-  const [showContextMenu, toggleContextMenu] = useState(false)
   const [showInPanel, toggleShowInPanel] = useState(true)
 
   let [isMatch, matchIndex] = [...getMenuItemVals().slice(0, 2)]
@@ -128,7 +128,15 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
             {showInPanel ? "show in new window" : "show in panel"}
           </button>
           <span onClick={() => openContentPanel()}>
-            { showInPanel ? title + " : " + parseContent(contentAtPath, sheet) : title }
+            {
+              showInPanel ?
+                <>
+                  <span>{title}:</span>
+                  <ParsedContent contentProps={[sheet, contentAtPath, displayed, setDisplayed]} />
+                </>
+                  :
+                <span>{title}</span>
+            }
           </span>
         </span>
       )
