@@ -9,10 +9,6 @@ export const starterSheetData: NestedBlock[] = [
     { title: `class levels`, content: [
       { title: `bard`, content: `5` },
     ]},
-    { title: `background`, content: `guild artisan` },
-    { title: `race`, content: `high elf` },
-    { title: `alignment`, content: `neutral good` },
-    { title: `experience points`, content: `7000` },
 
     { title: `ability scores`, content: [
       { title: `strength`, content: `10` },
@@ -41,20 +37,7 @@ export const starterSheetData: NestedBlock[] = [
       { title: `charisma`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
     ]},
 
-    { title: `skills`, content: [
-      { title: `persuasion`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus * 2]` },
-      { title: `deception`, content: `[mainPage.abilityModifiers.charisma + mainPage.proficiencyBonus]` },
-      { title: `perception`, content: `[mainPage.abilityModifiers.wisdom + mainPage.proficiencyBonus]` },
-      { title: `arcana`, content: `[mainPage.abilityModifiers.intelligence + mainPage.proficiencyBonus]` },
-      { title: `history`, content: `[mainPage.abilityModifiers.intelligence + mainPage.proficiencyBonus * 2]`},
-      { title: `acrobatics`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` },
-      { title: `sleight of hand`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` },
-      { title: `stealth`, content: `[mainPage.abilityModifiers.dexterity + mainPage.proficiencyBonus]` }
-    ]},
-
     { title: `proficiency bonus`, content: `3` },
-    { title: `inspiration`, content: `[x]` },
-    { title: `speed`, content: `30` },
 
     { title: `maximum hit points`, content: `[8 + 8 + 5 * mainPage.abilityModifiers.constitution]` },
     { title: `current hit points`, content: `[mainPage.maximumHitPoints + 2]` },
@@ -63,20 +46,6 @@ export const starterSheetData: NestedBlock[] = [
       { title: `longsword`, content: `[1d8 + mainPage.abilityModifiers.dexterity slashing]` },
       { title: `bow`, content: `[1d8 piercing], [1d6] fire` }
     ]},
-
-    { title: `passive wisdom`, content: `[mainPage.skills.perception]` },
-
-    { title: `money`, content: `[50] gold pieces`},
-    { title: `equipment`, content: `backpack, bedroll, rope` },
-
-    { title: `features & traits`, content:
-      `Bardic Inspiration [1d8],
-      Jack of All Trades (+[mainpage.classLevels.bard / 2] bonus),
-      Song of Rest [1d6],
-      Expertise (persuasion, history),
-      Font of Inspiration,
-      Cutting Words`
-    },
 
   ]},
 

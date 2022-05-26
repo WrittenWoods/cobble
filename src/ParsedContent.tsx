@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { arrayEquals } from "./helpers/interfaces";
-import { SearchBlock } from "./interfaces";
+import { SearchBlock } from "./helpers/interfaces";
 import { getOneDContent } from "./helpers/getOneDContent";
 import { diceRoller } from "./helpers/diceRoller";
 import { evaluate } from 'mathjs';

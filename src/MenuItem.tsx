@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { parseContent } from "./helpers/parseContent";
 import { arrayEquals } from "./helpers/arrayEquals";
 import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
-import ContextMenu from "./ContextMenu";
 import ParsedContent from "./ParsedContent";
 
 function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps) {

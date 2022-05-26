@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-function ContextMenu ({ contextMenuState }) {
+function DropDown ({ dropDownProps }) {
 
-  const [contentType, toggleEditMode, showContextMenu] = [...contextMenuState]
+  const [contentType, toggleEditMode, showContextMenu] = [...contextMenuProps]
 
   const [contextItems, setContextItems] = useState([...contextMenuContents()])
 
@@ -30,4 +30,4 @@ function ContextMenu ({ contextMenuState }) {
 
 }
 
-export default ContextMenu;
+export default DropDown;

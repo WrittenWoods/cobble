@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Panel from "./Panel";
-import { arrayEquals } from "./helpers/interfaces";
+import { arrayEquals } from "./helpers/arrayEquals";
 import { SheetProps } from "./helpers/interfaces";
 
 function Sheet ({ sheet, setSheet }: SheetProps) {

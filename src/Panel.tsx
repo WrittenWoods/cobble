@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Panel.css';
 import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
-import ContextMenu from "./ContextMenu";
 import { PanelProps } from "./helpers/interfaces";
 
 function Panel ({ sheetState, panelContent }: PanelProps) {
@@ -35,12 +34,6 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
           />
         )
       }
-    } else if (panelContent.panelType === "context menu") {
-      return (
-        <ContextMenu
-          sheetState={sheetState}
-        />
-      )
     }
   }
 
