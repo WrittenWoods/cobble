@@ -12,6 +12,7 @@ import { SheetState } from "./types";
 
 export interface NestedBlock {
   title: string,
+  display: string,
   content: string | NestedBlock[]
 }
 
@@ -24,7 +25,8 @@ export interface SearchBlock {
 
 export interface DisplayedPanel {
   panelType: string,
-  panelProps: string[]
+  panelProps?: string[],
+  blockContent?: string
 }
 
 export interface SheetProps {
@@ -45,4 +47,26 @@ export interface MenuItemProps {
 export interface PanelProps {
   sheetState: SheetState,
   panelContent: { panelType: string, panelProps: string[] }
+}
+
+export interface ContentBlockProps {
+  sheetState: SheetState,
+  titlePath?: string[],
+  blockString?: string
+}
+
+export interface ContentProps {
+  sheetState: SheetState,
+  contentAtPath: string
+}
+
+export interface DropdownProps {
+  contentType: string,
+  toggleEditMode: (a: boolean)=>void,
+  showDropdownMenu: boolean
+}
+
+export interface SaveMenuProps {
+  sheet: SearchBlock[],
+  setSheet: (a:SearchBlock[])=>void,
 }

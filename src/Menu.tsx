@@ -21,7 +21,7 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
 
   // Adds a new menu item or submenu
 
-  function addMenuItem(str) {
+  function addMenuItem(str: string) {
     let lastIndex = 0
     let newSheet = sheet
     let newItem
@@ -37,7 +37,7 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
         lastIndex = i
       }
     }
-    newSheet.splice(lastIndex + 1, 0, newItem)
+    if (newItem) { newSheet.splice(lastIndex + 1, 0, newItem) }
     setSheet([...newSheet])
   }
 

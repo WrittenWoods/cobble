@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { toNestedSheet } from "./helpers/toNestedSheet";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
+import { SaveMenuProps } from "./helpers/interfaces";
 
-function SaveMenu ({ sheet, setSheet }) {
+function SaveMenu ({ sheet, setSheet }: SaveMenuProps ) {
 
   const [showSaveData, setShowSaveData] = useState(false)
   const [showLoadField, setShowLoadField] = useState(false)

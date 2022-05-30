@@ -4,19 +4,19 @@ import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
-function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps) {
+function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
-  const [editMode, toggleEditMode] = useState(initialEditMode)
+  const [editMode, toggleEditMode] = useState(false)
   const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
-  const [contentAtPath, setContentAtPath] = useState(getMenuItemVals()[2])
+  const [contentAtPath, setContentAtPath] = useState(getMenuItemVals().contentAtPath)
   const [showInPanel, toggleShowInPanel] = useState(true)
 
-  let [isMatch, matchIndex] = [...getMenuItemVals().slice(0, 2)]
+  let { isMatch, matchIndex } = getMenuItemVals()
 
   useEffect(() => {
-    setContentAtPath(getMenuItemVals()[2])
+    setContentAtPath(getMenuItemVals().contentAtPath)
   }, [sheet]);
 
   // Represents whether there's an element in the sheet matching the new titlePath
@@ -25,10 +25,10 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
   function getMenuItemVals () {
     for (let i = 0; i < sheet.length; i++) {
       if (arrayEquals(sheet[i].titlePath, newTitlePath)) {
-        return [true, i, sheet[i].content]
+        return { isMatch: true, matchIndex: i, contentAtPath: sheet[i].content }
       }
     }
-    return [false, undefined, undefined]
+    return { isMatch: false, matchIndex: NaN, contentAtPath: "" }
   };
 
   // Updates sheet with edited title and content values
@@ -85,13 +85,6 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
     setSheet(updated)
   }
 
-  // Handles menu item context menu clicks
-
-  function handleContextMenuClick(e) {
-    e.preventDefault()
-    toggleContextMenu(!showContextMenu)
-  }
-
   // Displays new panel if not already displayed, moves it to front if it is.
 
   function handleMenuItemClick() {
@@ -110,7 +103,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
 
   function handleShowInPanelButton() {
     if (!showInPanel) {
-      setDisplayed(displayed.filter(x => x.panelType !== "content" && x.titlePath !== newTitlePath))
+      setDisplayed(displayed.filter(x => x.panelType !== "content" && x.panelProps !== newTitlePath))
     }
     toggleShowInPanel(!showInPanel)
   }
@@ -121,7 +114,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
 
     if (isMatch) {
       return (
-        <span onContextMenu={(e) => handleContextMenuClick(e)} >
+        <span>
           <button onClick={() => handleShowInPanelButton()}>
             {showInPanel ? "show in new window" : "show in panel"}
           </button>
@@ -130,7 +123,7 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
               showInPanel ?
                 <>
                   <span>{title}:</span>
-                  <ParsedContent contentProps={[sheet, contentAtPath, displayed, setDisplayed]} />
+                  <ParsedContent sheetState={sheetState} contentAtPath={contentAtPath} />
                 </>
                   :
                 <span>{title}</span>
@@ -142,7 +135,6 @@ function MenuItem ({ sheetState, newTitlePath, initialEditMode }: MenuItemProps)
       return (
         <span
           onClick={() => handleMenuItemClick()}
-          onContextMenu={(e) => handleContextMenuClick(e)}
         >
           {title}
         </span>

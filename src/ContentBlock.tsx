@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { arrayEquals } from "./helpers/arrayEquals";
+import { ContentBlockProps } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
-function ContentBlock({ sheetState, titlePath = [], blockString = "" }) {
+function ContentBlock({ sheetState, titlePath = [], blockString = "" }: ContentBlockProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
@@ -22,7 +23,8 @@ function ContentBlock({ sheetState, titlePath = [], blockString = "" }) {
   return (
     <span>
       <ParsedContent
-        contentProps={[sheet, blockContent, displayed, setDisplayed]}
+        sheetState={sheetState}
+        contentAtPath={blockContent}
       />
     </span>
   )

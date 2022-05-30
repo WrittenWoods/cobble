@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { arrayEquals } from "./helpers/interfaces";
+import { arrayEquals } from "./helpers/arrayEquals";
 import { SearchBlock } from "./helpers/interfaces";
 import { getOneDContent } from "./helpers/getOneDContent";
 import { diceRoller } from "./helpers/diceRoller";
+import { ContentProps } from "./helpers/interfaces";
 import { evaluate } from 'mathjs';
 
-function ParsedContent ({ contentProps }) {
+function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
 
-  const [sheet, contentAtPath, displayed, setDisplayed] = [...contentProps]
+  const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
   // Function that finds bracketed text in a string
   // and parses it for block content, dice rolls, mathematical operations
 
   function parseContent (content: string, sheet: SearchBlock[]) {
 
-    function tryEval(string) {
+    function tryEval(string: string) {
       try {
         return evaluate(string)
       } catch {
@@ -24,7 +25,7 @@ function ParsedContent ({ contentProps }) {
 
     // Executes the math in a string and returns interpolated string
 
-    function interpolateMath(str) {
+    function interpolateMath(str: string) {
       let result = str
       let mathArray = [...result.matchAll(/(\d|\+|\-|\*|\/|\(|\)|\.| )+/g)]
                       .map(a => a[0].trim())
@@ -37,10 +38,10 @@ function ParsedContent ({ contentProps }) {
 
     // Executes a complex die roll that might involve modifiers, different kinds of die, etc.
 
-    function complexDieRoller(str) {
+    function complexDieRoller(str: string) {
       let result = str
       let rollArray = [...result.matchAll(/([\d]+d[\d]+)/g)].map(a => a[0])
-      let rolledArray = rollArray.map(x => diceRoller(x))
+      let rolledArray = rollArray.map(x => diceRoller(x).toString())
       for (let i = 0; i < rollArray.length; i++) {
         result = result.replace(rollArray[i], rolledArray[i])
       }
@@ -49,7 +50,7 @@ function ParsedContent ({ contentProps }) {
 
     // Function that parses the contents of bracketed text in a block
 
-    function parseBracket (str: string): string {
+    function parseBracket (str: string): { containsRoll: boolean, result: string } {
 
       let result = str.replaceAll(/\[|\]/g, "")
 
@@ -113,7 +114,7 @@ function ParsedContent ({ contentProps }) {
               return (
                 <button
                   onClick={
-                    () => setDisplayed([... displayed, {
+                    () => setDisplayed([...displayed, {
                       panelType: "content",
                       panelProps: `${toRender.result} = ${complexDieRoller(toRender.result)}`
                     }])

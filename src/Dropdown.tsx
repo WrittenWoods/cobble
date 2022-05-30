@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import { DropdownProps } from "./helpers/interfaces";
 
-function DropDown ({ dropDownProps }) {
+function Dropdown ({ contentType, toggleEditMode, showDropdownMenu }: DropdownProps) {
 
-  const [contentType, toggleEditMode, showContextMenu] = [...contextMenuProps]
-
-  const [contextItems, setContextItems] = useState([...contextMenuContents()])
+  const [dropdownItems, setDropdownItems] = useState([...dropdownContents()])
 
   document.addEventListener("click", function(e) {console.log(e.target)} )
 
-  function contextMenuContents() {
+  function dropdownContents() {
     let result = []
 
     if (["text", "menu"].includes(contentType)) {
@@ -24,10 +23,10 @@ function DropDown ({ dropDownProps }) {
 
   return (
     <ul>
-      {contextItems.map(x => <li>{x}</li>)}
+      {dropdownItems.map(x => <li>{x}</li>)}
     </ul>
   )
 
 }
 
-export default DropDown;
+export default Dropdown;
