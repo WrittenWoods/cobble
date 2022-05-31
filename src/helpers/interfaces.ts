@@ -25,8 +25,8 @@ export interface SearchBlock {
 
 export interface DisplayedPanel {
   panelType: string,
-  panelProps?: string[],
-  blockContent?: string
+  titlePath?: string[],
+  blockString?: string
 }
 
 export interface SheetProps {
@@ -46,7 +46,7 @@ export interface MenuItemProps {
 
 export interface PanelProps {
   sheetState: SheetState,
-  panelContent: { panelType: string, panelProps: string[] }
+  panelContent: DisplayedPanel
 }
 
 export interface ContentBlockProps {

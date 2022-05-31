@@ -15,22 +15,22 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
       return (
         <Menu
           sheetState={sheetState}
-          titlePath={panelContent.panelProps}
+          titlePath={panelContent.titlePath}
         />
       )
     } else if (panelContent.panelType === "content") {
-      if (Array.isArray(panelContent.panelProps)) {
+      if ('titlePath' in panelContent) {
         return (
           <ContentBlock
             sheetState={sheetState}
-            titlePath={panelContent.panelProps}
+            titlePath={panelContent.titlePath}
           />
         )
-      } else if (typeof panelContent.panelProps === "string") {
+      } else if ('blockString' in panelContent) {
         return (
           <ContentBlock
             sheetState={sheetState}
-            blockString={panelContent.panelProps}
+            blockString={panelContent.blockString}
           />
         )
       }
@@ -38,10 +38,12 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   }
 
   function closePanel() {
-    if (panelContent.panelProps.length !== 0) {
+    if ('blockString' in panelContent || panelContent.titlePath.length !== 0) {
       return (
         <button onClick={
-          () => setDisplayed(displayed.filter( x => x.panelProps !== panelContent.panelProps))
+          () => setDisplayed(displayed.filter(
+             x => x.titlePath !== panelContent.titlePath || x.blockString !== panelContent.blockString
+          ))
         }>x</button>
       )
     }

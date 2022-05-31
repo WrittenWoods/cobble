@@ -116,7 +116,7 @@ function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
                   onClick={
                     () => setDisplayed([...displayed, {
                       panelType: "content",
-                      panelProps: `${toRender.result} = ${complexDieRoller(toRender.result)}`
+                      blockString: `${toRender.result} = ${complexDieRoller(toRender.result)}`
                     }])
                   }
                   key={index}
