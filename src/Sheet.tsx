@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Panel from "./Panel";
 import { arrayEquals } from "./helpers/arrayEquals";
-import { SheetProps } from "./helpers/interfaces";
+import { SheetProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
 
 function Sheet ({ sheet, setSheet }: SheetProps) {
 
+  const initialMenu: ContentPanel | MenuPanel = { panelType: "menu", titlePath: [] }
+
   // Array of props for each currently open panel
-  const [displayed, setDisplayed] = useState([{ panelType: "menu", titlePath: [] }])
+  const [displayed, setDisplayed] = useState([initialMenu])
 
   // Renders a Panel component for each object in "displayed" state.
   return (
     <div>
-      <button onClick={() => setDisplayed([{ panelType: "menu", titlePath: [] }]) }>reset</button>
+      <button onClick={() => setDisplayed([initialMenu]) }>reset</button>
       {displayed.map( (panelContent, i) =>
         <Panel
           sheetState={[sheet, setSheet, displayed, setDisplayed]}

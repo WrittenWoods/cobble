@@ -42,10 +42,10 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   function closePanel() {
 
     function filterDisplayed(a: ContentPanel | MenuPanel) {
-      if ('titlePath' in a && 'titlePath' in panelContent) {
-        return a.titlePath !== panelContent.titlePath
-      } else if ('blockString' in a && 'blockString' in panelContent) {
-        return a.blockString !== panelContent.blockString
+      if ('titlePath' in a) {
+        return 'titlePath' in panelContent ? a.titlePath !== panelContent.titlePath : true
+      } else if ('blockString' in a) {
+        return 'blockString' in panelContent ? a.blockString !== panelContent.blockString : true
       }
     }
 
