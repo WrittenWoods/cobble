@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Panel.css';
 import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
-import { PanelProps } from "./helpers/interfaces";
+import { PanelProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
 
 function Panel ({ sheetState, panelContent }: PanelProps) {
 
@@ -12,12 +12,14 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
 
   function renderPanelContents() {
     if (panelContent.panelType === "menu") {
-      return (
-        <Menu
-          sheetState={sheetState}
-          titlePath={panelContent.titlePath}
-        />
-      )
+      if ('titlePath' in panelContent && Array.isArray(panelContent.titlePath)) {
+        return (
+          <Menu
+            sheetState={sheetState}
+            titlePath={panelContent.titlePath}
+          />
+        )
+      }
     } else if (panelContent.panelType === "content") {
       if ('titlePath' in panelContent) {
         return (
@@ -38,13 +40,18 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   }
 
   function closePanel() {
-    if ('blockString' in panelContent || panelContent.titlePath.length !== 0) {
+
+    function filterDisplayed(a: ContentPanel | MenuPanel) {
+      if ('titlePath' in a && 'titlePath' in panelContent) {
+        return a.titlePath !== panelContent.titlePath
+      } else if ('blockString' in a && 'blockString' in panelContent) {
+        return a.blockString !== panelContent.blockString
+      }
+    }
+
+    if ('blockString' in panelContent || Array.isArray(panelContent.titlePath) && panelContent.titlePath.length !== 0) {
       return (
-        <button onClick={
-          () => setDisplayed(displayed.filter(
-             x => x.titlePath !== panelContent.titlePath || x.blockString !== panelContent.blockString
-          ))
-        }>x</button>
+        <button onClick={() => setDisplayed(displayed.filter( x => filterDisplayed(x) ))}>x</button>
       )
     }
   }

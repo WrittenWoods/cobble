@@ -23,10 +23,14 @@ export interface SearchBlock {
   content: string
 }
 
-export interface DisplayedPanel {
+export interface MenuPanel {
   panelType: string,
-  titlePath?: string[],
-  blockString?: string
+  titlePath: string[]
+}
+
+export interface ContentPanel {
+  panelType: string,
+  blockString: string
 }
 
 export interface SheetProps {
@@ -46,7 +50,7 @@ export interface MenuItemProps {
 
 export interface PanelProps {
   sheetState: SheetState,
-  panelContent: DisplayedPanel
+  panelContent: MenuPanel | ContentPanel
 }
 
 export interface ContentBlockProps {

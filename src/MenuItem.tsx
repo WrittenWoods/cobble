@@ -53,7 +53,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
 
     setDisplayed(displayed.map(e => {
-      if (e.panelType === "menu" && titlePathMatch(e.titlePath, newTitlePath)) {
+      if (e.panelType === "menu" && 'titlePath' in e && titlePathMatch(e.titlePath, newTitlePath)) {
         let newProps = e.titlePath
         newProps[newTitlePath.length - 1] = title
         return { panelType: "menu", titlePath: newProps }
@@ -76,10 +76,10 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   function handleDeleteButtonClick() {
     let toDisplay = displayed.filter(
-      x => !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
+      x => 'titlePath' in x && !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
     )
     let updated = sheet.filter(
-      x => !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
+      x => 'titlePath' in x && !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
     )
     setDisplayed(toDisplay)
     setSheet(updated)
@@ -88,7 +88,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   // Displays new panel if not already displayed, moves it to front if it is.
 
   function handleMenuItemClick() {
-    if (displayed.some(e => arrayEquals(e.titlePath, newTitlePath))) {
+    if (displayed.some(e => 'titlePath' in e && arrayEquals(e.titlePath, newTitlePath))) {
       console.log("this should bring the selected panel to the front")
     } else if (!isMatch) {
       setDisplayed([...displayed, { panelType: "menu", titlePath: newTitlePath }])
@@ -96,14 +96,14 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   }
 
   function openContentPanel() {
-    if (!showInPanel && !displayed.some( x => arrayEquals(x.titlePath, newTitlePath) )) {
+    if (!showInPanel && !displayed.some( x => 'titlePath' in x && arrayEquals(x.titlePath, newTitlePath) )) {
       setDisplayed([...displayed, { panelType: "content", titlePath: newTitlePath }])
     }
   }
 
   function handleShowInPanelButton() {
     if (!showInPanel) {
-      setDisplayed(displayed.filter(x => x.panelType !== "content" && x.titlePath !== newTitlePath))
+      setDisplayed(displayed.filter(x => 'titlePath' in x && x.panelType !== "content" && x.titlePath !== newTitlePath))
     }
     toggleShowInPanel(!showInPanel)
   }
