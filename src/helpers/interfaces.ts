@@ -50,7 +50,8 @@ export interface MenuItemProps {
 
 export interface PanelProps {
   sheetState: SheetState,
-  panelContent: MenuPanel | ContentPanel
+  panelContent: MenuPanel | ContentPanel,
+  displayedIndex: number
 }
 
 export interface ContentBlockProps {

@@ -4,7 +4,7 @@ import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
 import { PanelProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
 
-function Panel ({ sheetState, panelContent }: PanelProps) {
+function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
@@ -40,18 +40,9 @@ function Panel ({ sheetState, panelContent }: PanelProps) {
   }
 
   function closePanel() {
-
-    function filterDisplayed(a: ContentPanel | MenuPanel) {
-      if ('titlePath' in a) {
-        return 'titlePath' in panelContent ? a.titlePath !== panelContent.titlePath : true
-      } else if ('blockString' in a) {
-        return 'blockString' in panelContent ? a.blockString !== panelContent.blockString : true
-      }
-    }
-
     if ('blockString' in panelContent || Array.isArray(panelContent.titlePath) && panelContent.titlePath.length !== 0) {
       return (
-        <button onClick={() => setDisplayed(displayed.filter( x => filterDisplayed(x) ))}>x</button>
+        <button onClick={() => setDisplayed(displayed.filter( (x, i) => i !== displayedIndex ))}>x</button>
       )
     }
   }

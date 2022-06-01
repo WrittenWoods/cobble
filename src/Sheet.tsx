@@ -5,19 +5,20 @@ import { SheetProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
 
 function Sheet ({ sheet, setSheet }: SheetProps) {
 
-  const initialMenu: ContentPanel | MenuPanel = { panelType: "menu", titlePath: [] }
+  const initialMenu: (ContentPanel | MenuPanel)[] = [{ panelType: "menu", titlePath: [] }]
 
   // Array of props for each currently open panel
-  const [displayed, setDisplayed] = useState([initialMenu])
+  const [displayed, setDisplayed] = useState(initialMenu)
 
   // Renders a Panel component for each object in "displayed" state.
   return (
     <div>
-      <button onClick={() => setDisplayed([initialMenu]) }>reset</button>
+      <button onClick={() => setDisplayed(initialMenu) }>reset</button>
       {displayed.map( (panelContent, i) =>
         <Panel
           sheetState={[sheet, setSheet, displayed, setDisplayed]}
           panelContent={panelContent}
+          displayedIndex={i}
           key={JSON.stringify(panelContent) + i.toString()}
         />
       )}
