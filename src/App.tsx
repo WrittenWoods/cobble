@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import { starterSheetData } from "./starterSheetData";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
-import { NestedBlock, SearchBlock } from "./helpers/interfaces";
+import { NestedBlock, SearchBlock, SaveData } from "./helpers/interfaces";
 import { AppState } from "./helpers/types"
 import SaveMenu from "./SaveMenu";
 import Sheet from "./Sheet";
 
 function App() {
 
-  const [sheet, setSheet]: AppState = useState(oneDimensionalSheet(starterSheetData))
+  const [loadedSave, setLoadedSave]: SaveData = useState(oneDimensionalSheet(starterSheetData))
 
   return (
     <div className="App">

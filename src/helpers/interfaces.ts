@@ -12,7 +12,7 @@ import { SheetState } from "./types";
 
 export interface NestedBlock {
   title: string,
-  display: string,
+  displayInfo: DisplayInfo,
   content: string | NestedBlock[]
 }
 
@@ -23,36 +23,70 @@ export interface SearchBlock {
   content: string
 }
 
+// Describes data passed into the LoadedSave state variable in App.tsx
+
+export interface SaveData {
+  sheetData: SearchBlock[],
+  panelList: ( ContentPanel | MenuPanel )[]
+}
+
+// Describes a panel, typically a menu
+// which uses the location of an entry in a sheet to fetch info from that entry
+
 export interface MenuPanel {
+  displayInfo: DisplayInfo,
   panelType: string,
   titlePath: string[]
 }
 
+// Describes a panel in which info is directly passed into a panel's props as a string
+
 export interface ContentPanel {
+  displayInfo: DisplayInfo,
   panelType: string,
   blockString: string
 }
 
+// Describes the props inherited by Sheet.tsx
+
 export interface SheetProps {
-  sheet: SearchBlock[],
-  setSheet: (a:SearchBlock[])=>void
+  sheetData: SearchBlock[],
+  panelList: PanelData[]
 }
+
+// Describes the props inherited by Menu.tsx
 
 export interface MenuProps {
   sheetState: SheetState,
   titlePath: string[]
 }
 
+// Describes the props inherited by MenuItem.tsx
+
 export interface MenuItemProps {
   sheetState: SheetState,
   newTitlePath: string[]
 }
 
+// Describes whether, how and where a panel is displayed
+
+export interface DisplayInfo {
+  displayed: boolean,
+  displayType: string,
+  position?: { x: number, y: number },
+  width?: number,
+  height?: number
+}
+
+// Describes the props inherited by Panel.tsx
+
 export interface PanelProps {
   sheetState: SheetState,
   panelContent: MenuPanel | ContentPanel,
-  displayedIndex: number
+  displayedIndex: number,
 }
+
+// Describes the props inherited by ContentBlock.tsx
 
 export interface ContentBlockProps {
   sheetState: SheetState,
@@ -60,10 +94,14 @@ export interface ContentBlockProps {
   blockString?: string
 }
 
+// Describes the props inherited by ParsedContent.tsx
+
 export interface ContentProps {
   sheetState: SheetState,
   contentAtPath: string
 }
+
+// Describes the props inherited by Dropdown.tsx
 
 export interface DropdownProps {
   contentType: string,
@@ -71,7 +109,10 @@ export interface DropdownProps {
   showDropdownMenu: boolean
 }
 
+// Passed into SaveMenu.tsx
+
 export interface SaveMenuProps {
   sheet: SearchBlock[],
+  displayInfo: DisplayInfo,
   setSheet: (a:SearchBlock[])=>void,
 }

@@ -6,19 +6,19 @@ import { SearchBlock } from "./interfaces";
 export const oneDimensionalSheet = function convertNestedSheetToOneDimensionalSheet
   (arr: any[], titlePath: string[] = []): SearchBlock[] {
 
-  let newArr: SearchBlock[] = []
+  let sheetObject: SearchBlock[] = []
   let titleArray = titlePath
 
   for (let i = 0; i < arr.length; i++) {
     if (endOfTitlePath(arr[i])) {
-      newArr.push( { titlePath: [...titleArray, arr[i].title], content: arr[i].content } )
+      sheetObject.push( { titlePath: [...titleArray, arr[i].title], content: arr[i].content } )
     } else {
-      newArr.push(...oneDimensionalSheet(arr[i].content, [...titleArray, arr[i].title]))
+      sheetObject.push(...oneDimensionalSheet(arr[i].content, [...titleArray, arr[i].title]))
     }
   }
 
   // Returns one-dimensional array of SearchBlocks.
 
-  return newArr
+  return sheetObject
 
 }
