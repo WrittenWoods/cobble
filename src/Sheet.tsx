@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Panel from "./Panel";
 import { arrayEquals } from "./helpers/arrayEquals";
-import { SheetProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
+import { SheetProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 
 function Sheet ({ sheet, setSheet }: SheetProps) {
 
-  const initialMenu: (ContentPanel | MenuPanel)[] = [{ panelType: "menu", titlePath: [] }]
+  const initialMenu: (StringPanel | MenuPanel)[] = [{ panelType: "menu", titlePath: [] }]
 
   // Array of props for each currently open panel
   const [displayed, setDisplayed] = useState(initialMenu)

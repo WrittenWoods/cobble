@@ -27,7 +27,7 @@ export interface SearchBlock {
 
 export interface SaveData {
   sheetData: SearchBlock[],
-  panelList: ( ContentPanel | MenuPanel )[]
+  panelList: ( StringPanel | MenuPanel )[]
 }
 
 // Describes a panel, typically a menu
@@ -41,7 +41,7 @@ export interface MenuPanel {
 
 // Describes a panel in which info is directly passed into a panel's props as a string
 
-export interface ContentPanel {
+export interface StringPanel {
   displayInfo: DisplayInfo,
   panelType: string,
   blockString: string
@@ -82,7 +82,7 @@ export interface DisplayInfo {
 
 export interface PanelProps {
   sheetState: SheetState,
-  panelContent: MenuPanel | ContentPanel,
+  panelContent: MenuPanel | StringPanel,
   displayedIndex: number,
 }
 

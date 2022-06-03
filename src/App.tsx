@@ -9,7 +9,7 @@ import Sheet from "./Sheet";
 
 function App() {
 
-  const [loadedSave, setLoadedSave]: SaveData = useState(oneDimensionalSheet(starterSheetData))
+  const [sheet, setSheet] = useState(oneDimensionalSheet(starterSheetData).sheetData)
 
   return (
     <div className="App">

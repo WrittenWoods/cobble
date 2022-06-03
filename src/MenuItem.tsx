@@ -95,7 +95,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
   }
 
-  function openContentPanel() {
+  function openStringPanel() {
     if (!showInPanel && !displayed.some( x => 'titlePath' in x && arrayEquals(x.titlePath, newTitlePath) )) {
       setDisplayed([...displayed, { panelType: "content", titlePath: newTitlePath }])
     }
@@ -118,7 +118,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
           <button onClick={() => handleShowInPanelButton()}>
             {showInPanel ? "show in new window" : "show in panel"}
           </button>
-          <span onClick={() => openContentPanel()}>
+          <span onClick={() => openStringPanel()}>
             {
               showInPanel ?
                 <>

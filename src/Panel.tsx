@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Panel.css';
 import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
-import { PanelProps, ContentPanel, MenuPanel } from "./helpers/interfaces";
+import { PanelProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 
 function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
 
