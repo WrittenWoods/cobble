@@ -4,6 +4,8 @@ import { titlePathMatch } from './helpers/titlePathMatch'
 import { MenuProps } from './helpers/interfaces'
 import { arrayEquals } from './helpers/arrayEquals'
 
+// This component represents panel content consisting of a list of MenuItem components
+
 function Menu ({ sheetState, titlePath }: MenuProps ) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]

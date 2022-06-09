@@ -4,6 +4,8 @@ import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
+// This component represents a single menu item in a Menu component panel
+
 function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
@@ -56,7 +58,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
       if (e.panelType === "menu" && 'titlePath' in e && titlePathMatch(e.titlePath, newTitlePath)) {
         let newProps = e.titlePath
         newProps[newTitlePath.length - 1] = title
-        return { panelType: "menu", titlePath: newProps }
+        return { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", titlePath: newProps }
       } else {
         return e
       }
@@ -91,13 +93,13 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     if (displayed.some(e => 'titlePath' in e && arrayEquals(e.titlePath, newTitlePath))) {
       console.log("this should bring the selected panel to the front")
     } else if (!isMatch) {
-      setDisplayed([...displayed, { panelType: "menu", titlePath: newTitlePath }])
+      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", titlePath: newTitlePath }])
     }
   }
 
   function openStringPanel() {
     if (!showInPanel && !displayed.some( x => 'titlePath' in x && arrayEquals(x.titlePath, newTitlePath) )) {
-      setDisplayed([...displayed, { panelType: "content", titlePath: newTitlePath }])
+      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "content", titlePath: newTitlePath }])
     }
   }
 

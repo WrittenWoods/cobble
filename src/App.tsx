@@ -3,13 +3,18 @@ import './App.css';
 import { starterSheetData } from "./starterSheetData";
 import { oneDimensionalSheet } from "./helpers/oneDimensionalSheet";
 import { NestedBlock, SearchBlock, SaveData } from "./helpers/interfaces";
-import { AppState } from "./helpers/types"
 import SaveMenu from "./SaveMenu";
 import Sheet from "./Sheet";
 
+// Highest component in the hierarchy, represents the entire application.
+
 function App() {
 
-  const [sheet, setSheet] = useState(oneDimensionalSheet(starterSheetData).sheetData)
+  const loadedSheet: SaveData = oneDimensionalSheet(starterSheetData.sheetData)
+
+  // Contains an object with two properties, representing a character sheet
+  // One property is an array containing sheet data, the other represents the state and arrangement of panels
+  const [loadedSave, setLoadedSave] = useState(loadedSheet)
 
   return (
     <div className="App">
@@ -17,12 +22,11 @@ function App() {
         <h2>Cobble</h2>
       </header>
       <SaveMenu
-        sheet={sheet}
-        setSheet={setSheet}
+        loadedSave={loadedSave}
       />
       <Sheet
-        sheet={sheet}
-        setSheet={setSheet}
+        sheetData={loadedSave.sheetData}
+        panelList={loadedSave.panelList}
       />
     </div>
   );

@@ -3,8 +3,10 @@ import { arrayEquals } from "./helpers/arrayEquals";
 import { SearchBlock } from "./helpers/interfaces";
 import { getOneDContent } from "./helpers/getOneDContent";
 import { diceRoller } from "./helpers/diceRoller";
-import { ContentProps } from "./helpers/interfaces";
+import { ContentProps, StringPanel } from "./helpers/interfaces";
 import { evaluate } from 'mathjs';
+
+// Component representing a string parsed for dice rolls, math, other sheet fields, etc.
 
 function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
 
@@ -110,14 +112,16 @@ function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
         arr.map( (x, index) => {
           if (/\[(.)*?\]/.test(x)) {
             let toRender = parseBracket(x)
+            const newStringPanel: StringPanel = {
+              displayInfo: { displayed: true, displayType: "new panel" },
+              panelType: "content",
+              blockString: `${toRender.result} = ${complexDieRoller(toRender.result)}`
+            }
             if (toRender.containsRoll) {
               return (
                 <button
                   onClick={
-                    () => setDisplayed([...displayed, {
-                      panelType: "content",
-                      blockString: `${toRender.result} = ${complexDieRoller(toRender.result)}`
-                    }])
+                    () => setDisplayed([...displayed, newStringPanel])
                   }
                   key={index}
                 >

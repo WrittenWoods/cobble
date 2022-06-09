@@ -4,6 +4,8 @@ import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
 import { PanelProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 
+// This component represents a displayed panel
+
 function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
@@ -38,6 +40,8 @@ function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
       }
     }
   }
+
+  // Closes a displayed panel by removing it from the displayed state in Sheet.tsx
 
   function closePanel() {
     if ('blockString' in panelContent || Array.isArray(panelContent.titlePath) && panelContent.titlePath.length !== 0) {

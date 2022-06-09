@@ -1,6 +1,6 @@
 import { SearchBlock, MenuPanel, StringPanel } from "./interfaces";
 
-export type AppState = [SearchBlock[], (a:SearchBlock[])=>void]
+// Represents all the state variables and state setter functions in the Sheet component
 
 export type SheetState = [
   SearchBlock[],

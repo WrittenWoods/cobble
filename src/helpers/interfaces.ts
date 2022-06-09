@@ -8,6 +8,13 @@ import { SheetState } from "./types";
 
 */
 
+// Describes the nested character sheet data structure of save data
+
+export interface NestedSheet {
+  sheetData: NestedBlock[]
+  stringPanels: StringPanel[]
+}
+
 // Blocks as they exist in the nested object form of a character sheet
 
 export interface NestedBlock {
@@ -51,7 +58,7 @@ export interface StringPanel {
 
 export interface SheetProps {
   sheetData: SearchBlock[],
-  panelList: PanelData[]
+  panelList: ( StringPanel | MenuPanel )[]
 }
 
 // Describes the props inherited by Menu.tsx

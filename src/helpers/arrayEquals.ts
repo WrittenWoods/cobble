@@ -1,4 +1,5 @@
-// Check for equality between two arrays containing strings
+// Accepts: Two arrays containing strings
+// Returns: A boolean representing whether those arrays are identical
 
 export const arrayEquals = function checkShallowEqualityBetweenStringArrays
 (a: string[], b: string[]): boolean {
