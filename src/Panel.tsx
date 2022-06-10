@@ -15,20 +15,20 @@ function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
 
   function renderPanelContents() {
     if (panelContent.panelType === "menu") {
-      if ('titlePath' in panelContent && Array.isArray(panelContent.titlePath)) {
+      if ('crumbTrail' in panelContent && Array.isArray(panelContent.crumbTrail)) {
         return (
           <Menu
             sheetState={sheetState}
-            titlePath={panelContent.titlePath}
+            crumbTrail={panelContent.crumbTrail}
           />
         )
       }
     } else if (panelContent.panelType === "content") {
-      if ('titlePath' in panelContent) {
+      if ('crumbTrail' in panelContent) {
         return (
           <ContentBlock
             sheetState={sheetState}
-            titlePath={panelContent.titlePath}
+            crumbTrail={panelContent.crumbTrail}
           />
         )
       } else if ('blockString' in panelContent) {
@@ -45,7 +45,7 @@ function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
   // Closes a displayed panel by removing it from the displayed state in Sheet.tsx
 
   function closePanel() {
-    if ('blockString' in panelContent || Array.isArray(panelContent.titlePath) && panelContent.titlePath.length !== 0) {
+    if ('blockString' in panelContent || Array.isArray(panelContent.crumbTrail) && panelContent.crumbTrail.length !== 0) {
       return (
         <button onClick={() => setDisplayed(displayed.filter( (x, i) => i !== displayedIndex ))}>x</button>
       )

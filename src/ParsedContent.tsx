@@ -59,11 +59,11 @@ function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
 
       // Find and replace title paths with corresponding content
 
-      let titlePathString = result.replace(/([\d]+d[\d]+)/, "") //replaces dice rolls to prevent false positives
-      let titlePathsArray = [...titlePathString.matchAll(/([A-Za-z0-9-.]+)/g)].map(a => a[0])
-      let contentArray = titlePathsArray.map( x => getOneDContent(x, sheet).length ? getOneDContent(x, sheet) : x )
+      let crumbTrailString = result.replace(/([\d]+d[\d]+)/, "") //replaces dice rolls to prevent false positives
+      let crumbTrailsArray = [...crumbTrailString.matchAll(/([A-Za-z0-9-.]+)/g)].map(a => a[0])
+      let contentArray = crumbTrailsArray.map( x => getOneDContent(x, sheet).length ? getOneDContent(x, sheet) : x )
       for (let i = 0; i < contentArray.length; i++) {
-        result = result.replace(titlePathsArray[i], contentArray[i])
+        result = result.replace(crumbTrailsArray[i], contentArray[i])
       }
       let toRecurse = [...result.matchAll(/\[(.)*?\]/g)].map(a => a[0])
       while (toRecurse.length) {

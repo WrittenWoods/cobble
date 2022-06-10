@@ -9,7 +9,7 @@ import { SheetProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 function Sheet ({ sheetData, panelList }: SheetProps) {
 
   // Initial menu object representing the root menu
-  const initialMenu: (StringPanel | MenuPanel) = { displayInfo: { displayed: true, displayType: "root" }, panelType: "menu", titlePath: [] }
+  const initialMenu: (StringPanel | MenuPanel) = { displayInfo: { displayed: true, displayType: "root" }, panelType: "menu", crumbTrail: [] }
 
   // Represents array of currently open panels, consists of props that are passed into Panel.tsx
   const [displayed, setDisplayed] = useState([initialMenu, ...displayedPanelList()])

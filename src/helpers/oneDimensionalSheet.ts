@@ -1,5 +1,5 @@
-import { endOfTitlePath } from "./endOfTitlePath";
-import { titlePathMatch } from "./titlePathMatch"
+import { endOfCrumbTrail } from "./endOfCrumbTrail";
+import { crumbTrailMatch } from "./crumbTrailMatch"
 import { SearchBlock, SaveData, NestedBlock } from "./interfaces";
 
 // Accepts: A nested object representing either a whole character sheet or part of it.
@@ -7,7 +7,7 @@ import { SearchBlock, SaveData, NestedBlock } from "./interfaces";
 // and the other representing the state and arrangement of panels on the UI.
 
 export const oneDimensionalSheet = function convertNestedSheetToOneDimensionalSheet
-  (arr: any[], titlePath: string[] = []): SaveData {
+  (arr: any[], crumbTrail: string[] = []): SaveData {
 
   let sheetObject: SaveData = { sheetData: [], panelList: [] }
 
@@ -16,17 +16,17 @@ export const oneDimensionalSheet = function convertNestedSheetToOneDimensionalSh
       sheetObject.panelList.push({
         displayInfo: a.displayInfo,
         panelType: "menu",
-        titlePath: [...titlePath, a.title]
+        crumbTrail: [...crumbTrail, a.title]
       })
     }
   }
 
   for (let i = 0; i < arr.length; i++) {
-    if (endOfTitlePath(arr[i])) {
-      sheetObject.sheetData.push( { titlePath: [...titlePath, arr[i].title], content: arr[i].content } )
+    if (endOfCrumbTrail(arr[i])) {
+      sheetObject.sheetData.push( { crumbTrail: [...crumbTrail, arr[i].title], content: arr[i].content } )
       addNewPanelToPanelList(arr[i])
     } else {
-      let nested = oneDimensionalSheet(arr[i].content, [...titlePath, arr[i].title])
+      let nested = oneDimensionalSheet(arr[i].content, [...crumbTrail, arr[i].title])
       sheetObject.sheetData.push(...nested.sheetData)
       addNewPanelToPanelList(arr[i])
       sheetObject.panelList.push(...nested.panelList)

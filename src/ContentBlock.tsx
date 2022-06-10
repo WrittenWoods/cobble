@@ -6,7 +6,7 @@ import ParsedContent from "./ParsedContent";
 // Accepts: Sheet data and either a breadcrumb trail or a string (not both).
 // Returns: Either the string or content corresponding to a breadcrumb trail, as a ParsedContent component.
 
-function ContentBlock({ sheetState, titlePath = [], blockString = "" }: ContentBlockProps) {
+function ContentBlock({ sheetState, crumbTrail = [], blockString = "" }: ContentBlockProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
@@ -17,9 +17,9 @@ function ContentBlock({ sheetState, titlePath = [], blockString = "" }: ContentB
   // If absent, returns the string passed in as an argument.
 
   function getBlockContent() {
-    if (titlePath.length) {
+    if (crumbTrail.length) {
       for (let i = 0; i < sheet.length; i++) {
-        if (arrayEquals(sheet[i].titlePath, titlePath)) {
+        if (arrayEquals(sheet[i].crumbTrail, crumbTrail)) {
           return sheet[i].content
         }
       }

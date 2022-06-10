@@ -5,7 +5,7 @@ import { SheetState } from "./types";
 -A "block" in the context of this project is a single discrete named field in a character sheet.
 -"Class", "ability scores" etc.
 -NestedBlocks can be nested: "Strength" can be a block in "ability scores" etc.
--A "titlePath" is the breadcrumb trail of titles taken through a nested character sheet to reach content.
+-A "crumbTrail" is the breadcrumb trail of titles taken through a nested character sheet to reach content.
 
 */
 
@@ -27,7 +27,7 @@ export interface NestedBlock {
 // Blocks as they exist in the one-dimensional object array form of a character sheet
 
 export interface SearchBlock {
-  titlePath: string[],
+  crumbTrail: string[],
   content: string
 }
 
@@ -44,7 +44,7 @@ export interface SaveData {
 export interface MenuPanel {
   displayInfo: DisplayInfo,
   panelType: string,
-  titlePath: string[]
+  crumbTrail: string[]
 }
 
 // Describes a panel in which info is directly passed into a panel's props as a string
@@ -66,14 +66,14 @@ export interface SheetProps {
 
 export interface MenuProps {
   sheetState: SheetState,
-  titlePath: string[]
+  crumbTrail: string[]
 }
 
 // Describes the props inherited by MenuItem.tsx
 
 export interface MenuItemProps {
   sheetState: SheetState,
-  newTitlePath: string[]
+  newCrumbTrail: string[]
 }
 
 // Describes whether, how and where a panel is displayed
@@ -98,7 +98,7 @@ export interface PanelProps {
 
 export interface ContentBlockProps {
   sheetState: SheetState,
-  titlePath?: string[],
+  crumbTrail?: string[],
   blockString?: string
 }
 

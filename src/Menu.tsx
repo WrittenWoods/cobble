@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import MenuItem from './MenuItem'
-import { titlePathMatch } from './helpers/titlePathMatch'
+import { crumbTrailMatch } from './helpers/crumbTrailMatch'
 import { MenuProps } from './helpers/interfaces'
 import { arrayEquals } from './helpers/arrayEquals'
 
 // Accepts: Character sheet data and a breadcrumb trail through that sheet
 // Returns: A rendered list of menu items.
 
-function Menu ({ sheetState, titlePath }: MenuProps ) {
+function Menu ({ sheetState, crumbTrail }: MenuProps ) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
@@ -15,9 +15,9 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
 
   function menuItemList() {
     let result: string[] = []
-    let filtered = sheet.filter( x => titlePathMatch(x.titlePath, titlePath) )
+    let filtered = sheet.filter( x => crumbTrailMatch(x.crumbTrail, crumbTrail) )
     filtered.forEach(x =>
-      !result.includes(x.titlePath[titlePath.length]) && result.push(x.titlePath[titlePath.length])
+      !result.includes(x.crumbTrail[crumbTrail.length]) && result.push(x.crumbTrail[crumbTrail.length])
     )
     return result
   }
@@ -30,13 +30,13 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
     let newItem
 
     if (str === "menu item") {
-      newItem = { titlePath: [...titlePath.slice(0, titlePath.length), "new item"], content: "new item" }
+      newItem = { crumbTrail: [...crumbTrail.slice(0, crumbTrail.length), "new item"], content: "new item" }
     } else if (str === "submenu") {
-      newItem = { titlePath: [...titlePath.slice(0, titlePath.length), "new menu", "new item"], content: "new item" }
+      newItem = { crumbTrail: [...crumbTrail.slice(0, crumbTrail.length), "new menu", "new item"], content: "new item" }
     }
 
     for (let i = 0; i < sheet.length; i++) {
-      if (arrayEquals(sheet[i].titlePath.slice(0, titlePath.length), titlePath)) {
+      if (arrayEquals(sheet[i].crumbTrail.slice(0, crumbTrail.length), crumbTrail)) {
         lastIndex = i
       }
     }
@@ -54,8 +54,8 @@ function Menu ({ sheetState, titlePath }: MenuProps ) {
         {menuItemList().map( x =>
           <MenuItem
             sheetState={[sheet, setSheet, displayed, setDisplayed]}
-            newTitlePath={[...titlePath, x]}
-            key={[...titlePath, x].join('.') + 'menu item'}
+            newCrumbTrail={[...crumbTrail, x]}
+            key={[...crumbTrail, x].join('.') + 'menu item'}
           />
         )}
       </ul>

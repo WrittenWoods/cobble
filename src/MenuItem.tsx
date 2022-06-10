@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { arrayEquals } from "./helpers/arrayEquals";
-import { titlePathMatch } from "./helpers/titlePathMatch"
+import { crumbTrailMatch } from "./helpers/crumbTrailMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
 // Accepts: Sheet data and a breadcrumb trail through a character sheet.
 // Returns: JSX for an individual item in a Menu component.
 
-function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
+function MenuItem ({ sheetState, newCrumbTrail }: MenuItemProps) {
 
   const [sheet, setSheet, displayed, setDisplayed] = [...sheetState]
 
   const [editMode, toggleEditMode] = useState(false)
-  const [title, setTitle] = useState(newTitlePath[newTitlePath.length - 1])
+  const [title, setTitle] = useState(newCrumbTrail[newCrumbTrail.length - 1])
   const [contentAtPath, setContentAtPath] = useState(getMenuItemVals().contentAtPath)
   const [showInPanel, toggleShowInPanel] = useState(true)
 
@@ -22,12 +22,12 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     setContentAtPath(getMenuItemVals().contentAtPath)
   }, [sheet]);
 
-  // Represents whether there's an element in the sheet matching the new titlePath
+  // Represents whether there's an element in the sheet matching the new crumbTrail
   // If there is, assigns the "content" property of that element to contentAtPath
 
   function getMenuItemVals () {
     for (let i = 0; i < sheet.length; i++) {
-      if (arrayEquals(sheet[i].titlePath, newTitlePath)) {
+      if (arrayEquals(sheet[i].crumbTrail, newCrumbTrail)) {
         return { isMatch: true, matchIndex: i, contentAtPath: sheet[i].content }
       }
     }
@@ -42,8 +42,8 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
     function replaceTitle(arr: SearchBlock[]) {
       for (let i = 0; i < arr.length; i++) {
-        if (titlePathMatch(arr[i].titlePath, newTitlePath)) {
-          arr[i].titlePath[newTitlePath.length - 1] = title
+        if (crumbTrailMatch(arr[i].crumbTrail, newCrumbTrail)) {
+          arr[i].crumbTrail[newCrumbTrail.length - 1] = title
         }
       }
     }
@@ -56,10 +56,10 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
 
     setDisplayed(displayed.map(e => {
-      if (e.panelType === "menu" && 'titlePath' in e && titlePathMatch(e.titlePath, newTitlePath)) {
-        let newProps = e.titlePath
-        newProps[newTitlePath.length - 1] = title
-        return { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", titlePath: newProps }
+      if (e.panelType === "menu" && 'crumbTrail' in e && crumbTrailMatch(e.crumbTrail, newCrumbTrail)) {
+        let newProps = e.crumbTrail
+        newProps[newCrumbTrail.length - 1] = title
+        return { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", crumbTrail: newProps }
       } else {
         return e
       }
@@ -79,10 +79,10 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   function handleDeleteButtonClick() {
     let toDisplay = displayed.filter(
-      x => 'titlePath' in x && !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
+      x => 'crumbTrail' in x && !arrayEquals(newCrumbTrail, x.crumbTrail.slice(0, newCrumbTrail.length))
     )
     let updated = sheet.filter(
-      x => 'titlePath' in x && !arrayEquals(newTitlePath, x.titlePath.slice(0, newTitlePath.length))
+      x => 'crumbTrail' in x && !arrayEquals(newCrumbTrail, x.crumbTrail.slice(0, newCrumbTrail.length))
     )
     setDisplayed(toDisplay)
     setSheet(updated)
@@ -91,18 +91,18 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
   // Displays new panel if not already displayed, moves it to front if it is.
 
   function handleMenuItemClick() {
-    if (displayed.some(e => 'titlePath' in e && arrayEquals(e.titlePath, newTitlePath))) {
+    if (displayed.some(e => 'crumbTrail' in e && arrayEquals(e.crumbTrail, newCrumbTrail))) {
       console.log("this should bring the selected panel to the front")
     } else if (!isMatch) {
-      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", titlePath: newTitlePath }])
+      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "menu", crumbTrail: newCrumbTrail }])
     }
   }
 
   // Opens a panel whose purpose it is to display content.
 
   function openStringPanel() {
-    if (!showInPanel && !displayed.some( x => 'titlePath' in x && arrayEquals(x.titlePath, newTitlePath) )) {
-      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "content", titlePath: newTitlePath }])
+    if (!showInPanel && !displayed.some( x => 'crumbTrail' in x && arrayEquals(x.crumbTrail, newCrumbTrail) )) {
+      setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "content", crumbTrail: newCrumbTrail }])
     }
   }
 
@@ -111,7 +111,7 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
   function handleShowInPanelButton() {
     if (!showInPanel) {
-      setDisplayed(displayed.filter(x => 'titlePath' in x && x.panelType !== "content" && x.titlePath !== newTitlePath))
+      setDisplayed(displayed.filter(x => 'crumbTrail' in x && x.panelType !== "content" && x.crumbTrail !== newCrumbTrail))
     }
     toggleShowInPanel(!showInPanel)
   }
