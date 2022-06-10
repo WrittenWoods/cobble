@@ -4,7 +4,8 @@ import { titlePathMatch } from './helpers/titlePathMatch'
 import { MenuProps } from './helpers/interfaces'
 import { arrayEquals } from './helpers/arrayEquals'
 
-// This component represents panel content consisting of a list of MenuItem components
+// Accepts: Character sheet data and a breadcrumb trail through that sheet
+// Returns: A rendered list of menu items.
 
 function Menu ({ sheetState, titlePath }: MenuProps ) {
 

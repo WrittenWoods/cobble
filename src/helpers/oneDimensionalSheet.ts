@@ -2,7 +2,9 @@ import { endOfTitlePath } from "./endOfTitlePath";
 import { titlePathMatch } from "./titlePathMatch"
 import { SearchBlock, SaveData, NestedBlock } from "./interfaces";
 
-// Method for converting a nested object sheet into a more searchable one-dimensional sheet.
+// Accepts: A nested object representing either a whole character sheet or part of it.
+// Returns: An object with two properties, one representing the data on a character sheet
+// and the other representing the state and arrangement of panels on the UI.
 
 export const oneDimensionalSheet = function convertNestedSheetToOneDimensionalSheet
   (arr: any[], titlePath: string[] = []): SaveData {

@@ -4,7 +4,7 @@ import { NestedBlock, SearchBlock } from "./interfaces";
 // Should return true for strings and string arrays, false for an array with a block in it.
 
 export const endOfTitlePath = function checkContentForStringOrStringsArray
-  (block: NestedBlock | SearchBlock): boolean {
+  (block: NestedBlock): boolean {
 
   if (Array.isArray(block.content)) {
     for (let i = 0; i < block.content.length; i++) {

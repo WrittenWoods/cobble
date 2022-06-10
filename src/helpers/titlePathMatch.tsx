@@ -1,5 +1,5 @@
-// Checks for a match between an array of strings and the titlePath property of a character sheet
-// Returns true as long as all the strings in the titlePath
+// Accepts: 1) Two breadcrumb trails through a nested character sheet
+// Returns: true as long as all breadcrumbs in the second are present in the first, false otherwise
 
 export function titlePathMatch(sheetPath: string[], titlePath: string[]): boolean {
   for (let i = 0; i < titlePath.length; i++) {

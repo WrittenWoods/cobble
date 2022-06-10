@@ -5,6 +5,7 @@ import { SheetState } from "./types";
 -A "block" in the context of this project is a single discrete named field in a character sheet.
 -"Class", "ability scores" etc.
 -NestedBlocks can be nested: "Strength" can be a block in "ability scores" etc.
+-A "titlePath" is the breadcrumb trail of titles taken through a nested character sheet to reach content.
 
 */
 

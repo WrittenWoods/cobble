@@ -1,7 +1,8 @@
 import { addNestedBlock } from "./addNestedBlock";
 import { NestedBlock, SearchBlock } from "./interfaces";
 
-// Helper method for converting a one-dimensional object array sheet into a nested object sheet.
+// Accepts: One dimensional character sheet
+// Returns: Nested character sheet
 
 export const toNestedSheet = function convertOneDimensionalSheetIntoNestedSheet
   (arr: SearchBlock[]) {

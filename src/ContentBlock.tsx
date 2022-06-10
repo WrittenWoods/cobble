@@ -3,7 +3,8 @@ import { arrayEquals } from "./helpers/arrayEquals";
 import { ContentBlockProps } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
-// This component represents the content of a panel whose purpose is to display that content
+// Accepts: Sheet data and either a breadcrumb trail or a string (not both).
+// Returns: Either the string or content corresponding to a breadcrumb trail, as a ParsedContent component.
 
 function ContentBlock({ sheetState, titlePath = [], blockString = "" }: ContentBlockProps) {
 

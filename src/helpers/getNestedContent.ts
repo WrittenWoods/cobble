@@ -1,7 +1,7 @@
 
-// Function that accepts block titles as an array of strings
-// as well as an array of potentially nested blocks to search
-// and returns the corresponding content as a result if present.
+// Accepts: 1) Block titles as an array of strings and
+// 2) an array of potentially nested blocks to search.
+// Returns: The corresponding content as a result if present.
 
 export const getNestedContent = function returnContentFromNestedArray
 (keys: string[], toSearch: any[]): any[] | string | undefined {

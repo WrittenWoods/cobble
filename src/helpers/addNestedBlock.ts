@@ -1,7 +1,8 @@
 import { NestedBlock, SearchBlock } from "./interfaces";
 import { endOfTitlePath } from "./endOfTitlePath";
 
-// Method for adding a SearchBlock to a nested sheet, or changing its value if it's already there.
+// Accepts: 1) A single entry in a one dimensional sheel and 2) a nested character sheet
+// Returns: The nested character sheet argument with an entry either added or updated
 
 export const addNestedBlock = function addSearchBlockToNestedSheetArray
   (block: SearchBlock, arr: any[]) {

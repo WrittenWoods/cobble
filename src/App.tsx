@@ -7,6 +7,8 @@ import SaveMenu from "./SaveMenu";
 import Sheet from "./Sheet";
 
 // Highest component in the hierarchy, represents the entire application.
+// Imports: Nested character sheet, either as user input or from starterSheetData.ts
+// Returns: Header, SaveMenu component, Sheet component
 
 function App() {
 

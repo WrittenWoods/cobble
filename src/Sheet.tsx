@@ -3,7 +3,8 @@ import Panel from "./Panel";
 import { arrayEquals } from "./helpers/arrayEquals";
 import { SheetProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 
-// This component represents a loaded character sheet
+// Accepts: One dimensional sheet data and a list of panels
+// Returns: JSX representing the current state of that sheet
 
 function Sheet ({ sheetData, panelList }: SheetProps) {
 

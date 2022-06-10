@@ -4,7 +4,8 @@ import { titlePathMatch } from "./helpers/titlePathMatch"
 import { MenuItemProps, SearchBlock } from "./helpers/interfaces";
 import ParsedContent from "./ParsedContent";
 
-// This component represents a single menu item in a Menu component panel
+// Accepts: Sheet data and a breadcrumb trail through a character sheet.
+// Returns: JSX for an individual item in a Menu component.
 
 function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
 
@@ -97,11 +98,16 @@ function MenuItem ({ sheetState, newTitlePath }: MenuItemProps) {
     }
   }
 
+  // Opens a panel whose purpose it is to display content.
+
   function openStringPanel() {
     if (!showInPanel && !displayed.some( x => 'titlePath' in x && arrayEquals(x.titlePath, newTitlePath) )) {
       setDisplayed([...displayed, { displayInfo: { displayed: true, displayType: "new panel" }, panelType: "content", titlePath: newTitlePath }])
     }
   }
+
+  // Toggles between showing content inline or in a new panel.
+  // When user chooses to show content inline, closes content panel if open.
 
   function handleShowInPanelButton() {
     if (!showInPanel) {

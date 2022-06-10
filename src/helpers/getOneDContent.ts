@@ -1,7 +1,7 @@
 import { SearchBlock } from "./interfaces";
 
-// Function that accepts block titles as a string of the form "mainpage.abilityscores.strength" etc.
-// and returns the corresponding content as a result if present.
+// Accepts: Block titles as a string of the form "mainpage.abilityscores.strength" etc.
+// Returns: The corresponding content as a result if present.
 
 export const getOneDContent = (titlePath: string, sheet: SearchBlock[]): string => {
 

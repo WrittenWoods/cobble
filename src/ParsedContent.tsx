@@ -6,7 +6,8 @@ import { diceRoller } from "./helpers/diceRoller";
 import { ContentProps, StringPanel } from "./helpers/interfaces";
 import { evaluate } from 'mathjs';
 
-// Component representing a string parsed for dice rolls, math, other sheet fields, etc.
+// Accepts: Sheet data and content to be parsed.
+// Returns: Content parsed for dice rolls, mathematical operations and references to other values in the sheet.
 
 function ParsedContent ({ sheetState, contentAtPath }: ContentProps) {
 

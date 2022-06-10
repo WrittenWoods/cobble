@@ -4,7 +4,8 @@ import Menu from "./Menu";
 import ContentBlock from "./ContentBlock";
 import { PanelProps, StringPanel, MenuPanel } from "./helpers/interfaces";
 
-// This component represents a displayed panel
+// Accepts: Character sheet data, panel data and the index of that panel in the "displayed" state variable.
+// Returns: JSX of an open panel of a character sheet
 
 function Panel ({ sheetState, panelContent, displayedIndex }: PanelProps) {
 

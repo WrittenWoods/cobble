@@ -1,5 +1,6 @@
 
-// Function that accepts a string of the form "1d6", "32d12" etc. and returns a dice roll result.
+// Accepts: A string of the form "1d6", "32d12" etc.
+// Returns: A dice roll result.
 
 export const diceRoller = function parseDiceRollAndReturnResult (str: string): number {
 
