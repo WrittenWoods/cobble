@@ -1,11 +1,15 @@
 import { diceRoller, diceStringParser } from './diceRoller';
 const isTrue = (input: unknown) => !!input;
 describe('diceRoller', () => {
-  it("(is/can/has/does prefix optional) human-readable description of what's expected", () => {
+  // it("(is/can/has/does prefix optional) simple and short human-readable description of what's expected", () => {
     // expect contains your function, with some params, e.g. expect(isTrue(false))
-    // jest provides some helpers that then can be used to inspect the result, e.g. .toBe(), .to
-    expect(isTrue(false)).toBe(false);
+    // jest provides some helpers that then can be used to inspect the result, e.g. .toBe(), 
   });
+  
+  it("doesn't break reality", () =>{
+    expect(isTrue(false)).toBe(false);
+    expect(isTrue(true)).toBe(true);
+  })
 
   it('converts dice strings and then rolls the dice', () => {
     expect(diceRoller('1d6')).toBeGreaterThanOrEqual(1);
